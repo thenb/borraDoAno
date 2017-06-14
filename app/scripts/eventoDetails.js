@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', [])
+angular.module('starter.eventodetails', [])
 .controller('EventDetailsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();

@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput'])
+angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ionic','starter.borradetails','starter.borras',
+'starter.dashboard','starter.evento','starter.eventodetails', 'starter.eventos','starter.justificar','starter.profile',
+'ionic-material', 'ionMdInput'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -30,14 +32,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $ionicConfigProvider.backButton.previousTitleText(false);
     */
 
-    $stateProvider
-	.state('app', {
+    $stateProvider.state('app', {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
     })
-	
+
     .state('app.events', {
         url: '/events',
         views: {
