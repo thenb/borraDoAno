@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('starter.borradetails', [])
-.controller('BorrasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('BorraDetailsCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
@@ -10,11 +10,14 @@ angular.module('starter.borradetails', [])
     $scope.$parent.setHeaderFab('right');
 	
 
+   // Set Motion
     $timeout(function() {
-        ionicMaterialMotion.ripple({
-            selector: '.animate-ripple .item'
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
         });
     }, 100);
+	
+	
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
