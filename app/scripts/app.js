@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ionic','starter.borradetails','starter.borras',
 'starter.dashboard','starter.evento','starter.eventodetails', 'starter.eventos','starter.justificar','starter.profile',
-'ionic-material', 'ionMdInput'])
+'ionic-material', 'ionMdInput', 'restangular'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, RestangularProvider) {
 
     // Turn off caching for demo simplicity's sake
     $ionicConfigProvider.views.maxCache(0);
@@ -242,4 +242,6 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/login');
+	
+	RestangularProvider.setBaseUrl('https://borra.herokuapp.com/');
 });
