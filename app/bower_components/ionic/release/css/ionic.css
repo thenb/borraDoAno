@@ -5819,8 +5819,9 @@ input, button, select, textarea {
     top: 10px;
     -webkit-transition: opacity 0.15s ease-in, top 0.2s linear;
     transition: opacity 0.15s ease-in, top 0.2s linear; }
-    .item-floating-label .input-label.has-input {
-      opacity: 1;
+
+	.item-floating-label .input-label.has-input {
+      opacity: 0;
       top: 0;
       -webkit-transition: opacity 0.15s ease-in, top 0.2s linear;
       transition: opacity 0.15s ease-in, top 0.2s linear; }

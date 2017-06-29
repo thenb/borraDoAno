@@ -3,7 +3,7 @@
 
 angular.module('starter.profile', [])
 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $rootScope) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -20,5 +20,7 @@ angular.module('starter.profile', [])
 
     // Set Ink
     ionicMaterialInk.displayEffect();
-})
-;
+	
+	$scope.user = $rootScope.user;
+	
+});

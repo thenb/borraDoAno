@@ -62,6 +62,7 @@ angular.module('starter.borra', [])
 	};
 	
 	
+	$scope.borra = $rootScope.user;
 
 
 

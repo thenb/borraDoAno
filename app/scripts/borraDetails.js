@@ -16,9 +16,9 @@ angular.module('starter.borradetails', [])
             selector: '.slide-up'
         });
     }, 100);
-	
-	
 
     // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+    ionicMaterialInk.displayEffect();	
+
+	
 });
