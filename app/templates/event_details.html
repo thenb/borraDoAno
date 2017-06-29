@@ -1,0 +1,35 @@
+<ion-view view-title="Detahes do Evento">
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-ripple">
+	<div class="item card-item">
+		<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;"">
+		   <div class="item item-avatar">
+			  <img src="img/event.png" style="box-shadow: 0 0 0 0; max-height: 50px; max-width: 50px;">
+			  <h2><strong>Nome do Evento</strong></h2>
+			  <div class="card-footer text-right">
+				 <div class="pull-left">
+					<i class="icon ion-clock"></i> Agora mesmo
+				 </div>
+			  </div>
+		   </div>
+		   
+		   <div class="item item-body" style="padding-top: 0; ">
+		   	<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>BorraMaster</strong></p>
+			  <p style="margin-top: 0;">
+				 Descrição do Evento: This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+				 the content is from a card-body consisting of an image and paragraph text. The footer
+				 consists of tabs, icons aligned left, within the card-footer.
+			  </p>
+				<p style="font-size: 15px;"><strong>Deseja participar do evento?</strong></p>
+		   </div>
+			<div class = "row" style="padding-bottom: 15px;">
+			  <div class = "col-50">
+				<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+			  </div>
+			  <div class = "col-50">
+			  <img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+			  </div>
+		   </div>
+		</div>
+	</div>
+    </ion-content>
+</ion-view>

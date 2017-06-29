@@ -1,0 +1,42 @@
+<ion-view view-title="Novo Borra">
+	<ion-nav-buttons side="left">
+    <button class="button back-button buttons button-clear header-item" ng-click="cancelar()">
+      <i class="icon ion-ios-arrow-back"></i> 
+    </button>
+	</ion-nav-buttons>
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-color: #0c63ee;">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/user_add.png');"></div>
+                <h3><a class="light">Adicionar um novo Borra</a></h3>
+                <h4>&nbsp;</h4>
+            </div>
+        </div>
+		<div class="im-wrapper">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Nome</span>
+                    <input type="text" placeholder="Informe seu Nome" ng-model="borra.nome">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Apelido</span>
+                    <input type="text" placeholder="Informe seu Apelido" ng-model="borra.apelido">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">E-mail</span>
+                    <input type="text" placeholder="Informe seu E-mail" ng-model="borra.email">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Data de Nascimento</span>
+                    <input type="date" placeholder="Informe sua Data de Nascimento" ng-model="borra.data_nascimento">
+                </label>
+				<br>
+                <button class="button button-block button-positive" ng-click="novoBorra()">
+                    Adicionar
+                </button>
+                <button class="button button-block button-assertive" ng-click="cancelar()">
+                    Cancelar
+                </button>				
+			</div>				
+    </ion-content>
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="Novo Evento">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-color: #0c63ee;">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/event_add.png');"></div>
+                <h3><a class="light">Adicionar um novo Evento</a></h3>
+                <h4>&nbsp;</h4>
+            </div>
+        </div>
+		<div class="im-wrapper">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Nome do Evento</span>
+                    <input type="text" placeholder="Informe o Nome do Evento">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Descrição</span>
+                    <input type="text" placeholder="Informe a Descrição do Evento">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Local</span>
+                    <input type="text" placeholder="Informe o Local do Evento">
+                </label>
+				<div class = "row" style="padding-bottom: 15px;">
+					<div class = "col-50">
+						<label class="item item-input item-floating-label">
+							<span class="input-label">De:</span>
+							<input type="date" placeholder="Informe a Data de Início do Evento">
+						</label>
+					</div>
+					<div class = "col-50">
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Até:</span>
+							<input type="date" placeholder="Informe a Data de Encerramento do Evento">
+						</label>
+					</div>
+				</div>
+				<br>
+                <button class="button button-block button-positive">
+                    Adicionar
+                </button>
+                <button class="button button-block button-assertive">
+                    Cancelar
+                </button>				
+			</div>				
+    </ion-content>
+</ion-view>
