@@ -32,11 +32,14 @@ angular.module('starter.login', [])
 	
 	
 	$scope.doLogin = function() {
-		var promises = [];	
+		var promises = [];
+		$scope.showError = false;
 		promises.push(login());	
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
 			if(retorno[0].type===1){
+				$scope.showError = true;
+				$scope.msgError = retorno[0].msg;
 				//showErrorNotification(retorno[0].msg);
 			}else{
 			console.log('dashboar?');
