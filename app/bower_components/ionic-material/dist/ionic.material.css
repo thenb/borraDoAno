@@ -841,7 +841,7 @@
 ==================================*/
 .item {
   font-size: 14px;
-  width: 100%; }
+  width: inherit!important }
 
 .item-icon-left .icon {
   left: 16px; }
