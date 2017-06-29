@@ -32,7 +32,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     $ionicConfigProvider.backButton.previousTitleText(false);
     */
 
-    $stateProvider.state('app', {
+    $stateProvider
+	.state('app', {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
