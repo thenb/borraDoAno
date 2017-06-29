@@ -27,4 +27,7 @@ angular.module('starter.dashboard', [])
 	$rootScope.user = $scope.user
 	console.log($scope.user);
 
+	$scope.borraNome = decoded.user.nome;
+	$scope.borraApelido = decoded.user.apelido;
+
 });
