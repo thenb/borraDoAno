@@ -23,10 +23,10 @@ angular.module('starter.evento', [])
     ionicMaterialInk.displayEffect();
 	
 	$scope.evento = {};
-	console.log($rootScope.user);
+	$scope.user = $rootScope.user;
 	
 	function saveEvento() {			
-		var params = {  evento : $scope.evento };	
+		var params = {  evento : $scope.evento, id_borra_criador: $scope.user.id };	
 		var deffered  = $q.defer();	
 		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {			
 			if (evento.error) {

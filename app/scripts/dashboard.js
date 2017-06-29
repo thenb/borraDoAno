@@ -23,11 +23,8 @@ angular.module('starter.dashboard', [])
     ionicMaterialInk.displayEffect();
 	
 	var decoded = jwt_decode(localStorage.getItem("token"));	
+	//root scope user para virar global
+	$rootScope.user = decoded.user;
 	$scope.user = decoded.user;
-	$rootScope.user = $scope.user
-	console.log($scope.user);
-
-	$scope.borraNome = decoded.user.nome;
-	$scope.borraApelido = decoded.user.apelido;
 
 });
