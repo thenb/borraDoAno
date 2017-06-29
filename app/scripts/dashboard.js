@@ -25,4 +25,5 @@ angular.module('starter.dashboard', [])
 	var decoded = jwt_decode(localStorage.getItem("token"));	
 	$scope.user = decoded.user;
 	console.log($scope.user);
+
 });

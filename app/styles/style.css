@@ -83,3 +83,7 @@ p {
     position: fixed;
     bottom: 0;
 }
+
+.error-label {
+	padding: 0 12px; text-align: center; color: #fff;
+}

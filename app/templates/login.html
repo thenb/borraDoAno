@@ -1,17 +1,26 @@
 <ion-view view-title="Login" align-title="left">
     <ion-content style="background-color: #0c63ee;">
-        <div class="hero no-header flat">
-            <div class="content">
-                <div class="app-icon"></div>
-                <h1>Borra App</h1>
-            </div>
-        </div>
-        <div class="list">
-            <ion-md-input placeholder="Username" ng-model="user.email" highlight-color="balanced" type="text"></ion-md-input>
-            <ion-md-input placeholder="Password" ng-model="user.senha" highlight-color="energized" type="password"></ion-md-input>
-        </div>
-        <div class="padding">
-            <button ng-click="doLogin()" class="button button-full button-assertive ink">Login</button>
-        </div>
+		<div class="im-wrapper">
+			<div class="hero no-header flat">
+				<div class="content">
+					<div class="app-icon"></div>
+					<h1>Borra App</h1>
+				</div>
+			</div>
+			<div class="list">
+				<ion-md-input placeholder="Username" ng-model="user.email" highlight-color="balanced" type="text"></ion-md-input>
+				<ion-md-input placeholder="Password" ng-model="user.senha" highlight-color="energized" type="password"></ion-md-input>
+
+			</div>
+			<div class="padding">
+				<button ng-click="doLogin()" class="button button-full button-assertive ink">Login</button>
+			</div>
+			<h5 class="error-label" ng-if="showError">
+				<i class="icon ion-alert-circled"></i> {{msgError}}
+			</h5>
+			<div class="padding">
+				<button ng-click="doLogin()" class="button button-full button-assertive ink">Login</button>
+			</div>
+		</div>
     </ion-content>
 </ion-view>

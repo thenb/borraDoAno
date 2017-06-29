@@ -21,25 +21,31 @@ angular.module('starter.login', [])
 				 deffered.reject(tkn.error);
 			}else{
 				deffered.resolve(tkn);
-				console.log(tkn);						
 				localStorage.setItem("token", tkn.token);
 			}			
 		});
 		return deffered.promise;
-	}	ss
+
+	}	
 	
 	
 	$scope.doLogin = function() {
 		var promises = [];	
+
+	}	
+	
+	$scope.doLogin = function() {
+		var promises = [];
+		$scope.showError = false;
+
 		promises.push(login());	
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
 			if(retorno[0].type===1){
-				//showErrorNotification(retorno[0].msg);
+				$scope.showError = true;
+				$scope.msgError = retorno[0].msg;
 			}else{
-			console.log('dashboar?');
-			$state.go('app.dashboard');
-			//showNotification();				
+			$state.go('app.dashboard');				
 			}			
 		});
 	};

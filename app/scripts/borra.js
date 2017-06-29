@@ -3,7 +3,9 @@
 
 angular.module('starter.borra', [])
 
+
 .controller('BorraCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Restangular, $q, $state) {
+
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -17,6 +19,7 @@ angular.module('starter.borra', [])
             selector: '.slide-up'
         });
     }, 300);
+
 
     // Set Ink
     ionicMaterialInk.displayEffect();
@@ -59,4 +62,7 @@ angular.module('starter.borra', [])
 	};
 	
 	
+
+
+
 });
