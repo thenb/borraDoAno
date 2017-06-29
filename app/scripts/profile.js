@@ -3,7 +3,7 @@
 
 angular.module('starter.profile', [])
 
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $rootScope) {
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $rootScope,  $state) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -19,8 +19,14 @@ angular.module('starter.profile', [])
     }, 100);
 
     // Set Ink
-    ionicMaterialInk.displayEffect();
+    ionicMaterialInk.displayEffect();	
+	
 	
 	$scope.user = $rootScope.user;
+	$scope.borra = $scope.user;
+	
+	$scope.editarBorra = function () {
+		$state.go('app.borra', {novo: false, borra: $scope.borra });
+	};
 	
 });

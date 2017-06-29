@@ -3,7 +3,7 @@
 
 angular.module('starter.borras', [])
 
-.controller('BorrasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('BorrasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $state) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
@@ -19,6 +19,11 @@ angular.module('starter.borras', [])
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
-})
 
-;
+	
+	$scope.novoBorra = function () {
+		console.log('clicando');
+		$state.go('app.borra', {novo: true, borra: null });
+	};
+	
+	});

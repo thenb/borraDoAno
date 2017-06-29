@@ -85,12 +85,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 controller: 'BorrasCtrl'
             },
             'fabContent': {
-				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.borra"><i class="icon ion-plus"></i></button>',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
+				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="novoBorra()"><i class="icon ion-plus"></i></button>',
+                controller: 'BorrasCtrl'
             }
         }
     })	
@@ -110,7 +106,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                     }, 800);*/
                 }
             }
-        }
+        },
+		params: {novo: null, borra: null }	
     })	
 	
     .state('app.friends', {
@@ -209,15 +206,11 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 controller: 'ProfileCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.borra"><i class="icon ion-edit"></i></button>',
-                //template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
+                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarBorra()"><i class="icon ion-edit"></i></button>',
+                controller: 'ProfileCtrl'
             }
-        }
+        },
+		params: {novo: null, borra: null }	
     })
 	
     .state('app.dashboard', {

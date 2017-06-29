@@ -24,10 +24,25 @@ angular.module('starter.borra', [])
     // Set Ink
     ionicMaterialInk.displayEffect();
 	
-	$scope.borra = {};
+	$scope.borra1 = {};
+	console.log($scope.borra1);
+	console.log($state.params.novo);
+	$scope.novo = $state.params.novo;
+	if(typeof $state.params.novo === 'undefined'){
+			$state.go('borras');
+	}
+		
+	if($state.params.novo){
+		$scope.borra1 = {};
+		$scope.operacao = 'Novo';		
+	}else{	
+		$scope.operacao = 'Editar';	
+		$scope.borra1 = $state.params.borra;						
+	}
+	console.log($scope.borra1);
 	
 	function saveBorra() {			
-		var params = {  borra : $scope.borra };	
+		var params = {  borra : $scope.borra1 };	
 		var deffered  = $q.defer();	
 		Restangular.all('saveBorra').post(JSON.stringify(params)).then(function(borra) {			
 			if (borra.error) {
@@ -38,9 +53,7 @@ angular.module('starter.borra', [])
 			}			
 		});
 		return deffered.promise;
-	}
-	
-	
+	}	
 	
 	$scope.novoBorra = function() {
 		var promises = [];	
@@ -59,11 +72,6 @@ angular.module('starter.borra', [])
 	
 	$scope.cancelar = function() {
 		$state.go('app.borras');
-	};
-	
-	
-	$scope.borra = $rootScope.user;
-
-
+	};	
 
 });
