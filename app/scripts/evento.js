@@ -3,7 +3,7 @@
 
 angular.module('starter.evento', [])
 
-.controller('EventCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('EventCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $q, Restangular, $rootScope) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -21,5 +21,43 @@ angular.module('starter.evento', [])
 
     // Set Ink
     ionicMaterialInk.displayEffect();
+	
+	$scope.evento = {};
+	console.log($rootScope.user);
+	
+	function saveEvento() {			
+		var params = {  evento : $scope.evento };	
+		var deffered  = $q.defer();	
+		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				deffered.resolve(evento);
+				console.log(evento);
+			}			
+		});
+		return deffered.promise;
+	}	
+	
+	
+	$scope.novoEvento = function() {
+		var promises = [];	
+		promises.push(saveEvento($scope.evento));	
+		$q.all(promises).then(function(retorno) {
+			console.log(retorno);
+			if(retorno[0].type===1){
+				//showErrorNotification(retorno[0].msg);
+			}else{			
+			$state.go('app.eventos');
+			console.log('Evento Criado com Sucesso')
+			//showNotification();				
+			}			
+		});
+	};
+	
+	
+	$scope.cancelar = function() {
+		$state.go('app.eventos');
+	};
 })
 ;

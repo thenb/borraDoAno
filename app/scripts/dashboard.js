@@ -3,7 +3,7 @@
 
 angular.module('starter.dashboard', [])
 
-.controller('DashboardCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $ionicSideMenuDelegate) {
+.controller('DashboardCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $ionicSideMenuDelegate, $rootScope) {
     
 	$ionicSideMenuDelegate.canDragContent(true);	
 	$scope.$parent.showHeader();
@@ -24,6 +24,7 @@ angular.module('starter.dashboard', [])
 	
 	var decoded = jwt_decode(localStorage.getItem("token"));	
 	$scope.user = decoded.user;
+	$rootScope.user = $scope.user
 	console.log($scope.user);
 
 });

@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
 'starter.dashboard','starter.evento','starter.eventodetails', 'starter.eventos','starter.justificar','starter.profile',
 'ionic-material', 'ionMdInput', 'restangular'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -20,6 +20,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
             StatusBar.styleDefault();
         }
     });
+	$rootScope.user = {};
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, RestangularProvider) {

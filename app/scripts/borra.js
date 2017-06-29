@@ -4,7 +4,7 @@
 angular.module('starter.borra', [])
 
 
-.controller('BorraCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Restangular, $q, $state) {
+.controller('BorraCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Restangular, $q, $state, $rootScope) {
 
     // Set Header
     $scope.$parent.showHeader();
