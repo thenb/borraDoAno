@@ -3,21 +3,23 @@
 
 angular.module('starter.borras', [])
 
-.controller('BorrasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $state) {
+.controller('BorrasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Restangular, $q, $state) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab('right');
 	
+	var promises = [];
 
-    $timeout(function() {
+   /* $timeout(function() {
         ionicMaterialMotion.ripple({
-            selector: '.animate-ripple .item'
+            selector: '.animate-ripple .list'
         });
     }, 100);
-
-    // Activate ink for controller
+	*/
+    
+	// Activate ink for controller
     ionicMaterialInk.displayEffect();
 
 	
@@ -26,4 +28,35 @@ angular.module('starter.borras', [])
 		$state.go('app.borra', {novo: true, borra: null });
 	};
 	
-	});
+
+	function getAllBorras() {		
+		var deffered  = $q.defer();		
+		Restangular.one('/getAllBorras').getList().then(function(borras) {
+			$scope.borras = borras;
+			deffered.resolve(borras);
+		});
+		return deffered.promise;
+	}	
+	
+	
+	function init() {
+		console.log($scope.borras);
+        document.getElementsByTagName('ion-list')[0].className += ' animate-ripple';
+        setTimeout(function() {
+            ionicMaterialMotion.ripple();
+        }, 200);
+	}
+	
+	
+	promises.push(getAllBorras());
+	
+	
+	$q.all(promises).then(function() {			
+			init();
+			//console.log($scope.borras.nome);
+		}	
+	);
+	
+	
+});
+	
