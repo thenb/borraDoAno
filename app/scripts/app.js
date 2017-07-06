@@ -40,39 +40,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
     })
-
-    .state('app.events', {
-        url: '/events',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/events.html',
-                controller: 'EventsCtrl'
-            },
-            'fabContent': {
-				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="novoEvento()"><i class="icon ion-plus"></i></button>',
-                controller: 'EventsCtrl'
-                }
-        }
-    })
-
-    .state('app.event', {
-        url: '/event',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/event.html',
-                controller: 'EventCtrl'
-            },
-            'fabContent': {
-				template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-            }
-        },
-		params: {novo: null, evento: null }
-    })		
+    		
 	
     .state('app.borras', {
         url: '/borras',
@@ -107,44 +75,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
 		params: {novo: null, borra: null }	
     })	
 	
-    .state('app.friends', {
-        url: '/friends',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/friends.html',
-                controller: 'FriendsCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
-                    }, 900);
-                }
-            }
-        }
-    })
-
-    .state('app.event_details', {
-        url: '/event_details',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/event_details.html',
-                controller: 'EventDetailsCtrl'
-            },
-            'fabContent': {
-                template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-
-            }
-        }
-    })
-
-    .state('app.borra_details', {
+	.state('app.borra_details', {
         url: '/borra_details',
         views: {
             'menuContent': {
@@ -161,7 +92,74 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
 
             }
         }
-    })	
+    })   
+	
+	.state('app.profile', {
+        url: '/profile',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/profile.html',
+                controller: 'ProfileCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarBorra()"><i class="icon ion-edit"></i></button>',
+                controller: 'ProfileCtrl'
+            }
+        },
+		params: {novo: null, borra: null }	
+    })
+
+   .state('app.events', {
+        url: '/events',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/events.html',
+                controller: 'EventsCtrl'
+            },
+            'fabContent': {
+				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="novoEvento()"><i class="icon ion-plus"></i></button>',
+                controller: 'EventsCtrl'
+                }
+        }
+    })
+
+    .state('app.event', {
+        url: '/event',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/event.html',
+                controller: 'EventCtrl'
+            },
+            'fabContent': {
+				template: '',
+                controller: function ($timeout) {
+                    /*$timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);*/
+                }
+            }
+        },
+		params: {novo: null, evento: null }
+    })
+   
+   
+    .state('app.event_details', {
+        url: '/event_details',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/event_details.html',
+                controller: 'EventDetailsCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarEvento()"><i class="icon ion-edit"></i></button>',
+                controller: 'EventDetailsCtrl'
+                }
+
+           },
+		   params: {evento: null }
+    })
+
+    	
 	
     .state('app.justify', {
         url: '/justify',
@@ -193,22 +191,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 template: ''
             }
         }
-    })
-
-    .state('app.profile', {
-        url: '/profile',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarBorra()"><i class="icon ion-edit"></i></button>',
-                controller: 'ProfileCtrl'
-            }
-        },
-		params: {novo: null, borra: null }	
-    })
+    })   
 	
     .state('app.dashboard', {
         url: '/dashboard',

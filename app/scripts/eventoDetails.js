@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('starter.eventodetails', [])
-.controller('EventDetailsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading) {
+.controller('EventDetailsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading,  $state) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
@@ -28,6 +28,11 @@ angular.module('starter.eventodetails', [])
 	
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
+	
+	$scope.editarEvento = function () {
+		console.log('clicando');
+		$state.go('app.event', {novo: false, evento: null });
+	};
 	
 
 })
