@@ -62,7 +62,7 @@ angular.module('starter.evento', [])
 			promises.push(saveEvento($scope.evento));
 		}else{
 			
-		}	1	
+		}		
 		
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
