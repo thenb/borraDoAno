@@ -49,13 +49,9 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 controller: 'EventsCtrl'
             },
             'fabContent': {
-				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.event"><i class="icon ion-plus"></i></button>',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
+				template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="novoEvento()"><i class="icon ion-plus"></i></button>',
+                controller: 'EventsCtrl'
                 }
-            }
         }
     })
 
@@ -74,7 +70,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                     }, 800);*/
                 }
             }
-        }
+        },
+		params: {novo: null, evento: null }
     })		
 	
     .state('app.borras', {

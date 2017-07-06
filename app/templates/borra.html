@@ -13,31 +13,33 @@
             </div>
         </div>
 		<div class="im-wrapper">
-            <div class="list">
+            <form name="formBorra">
+			<div class="list">
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Nome</span>
-                    <input type="text" placeholder="Informe seu Nome" ng-model="borra1.nome">
+                    <input type="text" name="nome" placeholder="Informe seu Nome" ng-model="borra1.nome">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Apelido</span>
-                    <input type="text" placeholder="Informe seu Apelido" ng-model="borra1.apelido">
+                    <input type="text" name = "apelido" placeholder="Informe seu Apelido" ng-model="borra1.apelido">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">E-mail</span>
-                    <input type="text" placeholder="Informe seu E-mail" ng-model="borra1.email">
+                    <input type="text" name="email" placeholder="Informe seu E-mail" ng-model="borra1.email">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Data de Nascimento</span>
-                    <input type="date" placeholder="Informe sua Data de Nascimento" ng-model="borra1.data_nascimento">
+                    <input type="date" name="data_nascimento" placeholder="Informe sua Data de Nascimento" ng-model="borra1.data_nascimento">
                 </label>
 				<br>
-                <button class="button button-block button-positive" ng-click="novoBorra()">
-                    Adicionar
-                </button>
+                <button class="button button-block button-positive" ng-click="salvarBorra(formBorra)">
+                    Salvar
+                </button>				
                 <button class="button button-block button-assertive" ng-click="cancelar()">
 					Cancelar
                 </button>				                			
-			</div>	
+			</div>
+			</form>
 		</div>			
     </ion-content>
 </ion-view>

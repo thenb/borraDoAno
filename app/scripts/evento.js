@@ -3,7 +3,7 @@
 
 angular.module('starter.evento', [])
 
-.controller('EventCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $q, Restangular, $rootScope) {
+.controller('EventCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $q, Restangular, $rootScope, $state) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -22,11 +22,28 @@ angular.module('starter.evento', [])
     // Set Ink
     ionicMaterialInk.displayEffect();
 	
-	$scope.evento = {};
-	$scope.user = $rootScope.user;
+	$scope.evento1 = {};
 	
-	function saveEvento() {			
-		var params = {  evento : $scope.evento, id_borra_criador: $scope.user.id };	
+	console.log($rootScope.user);
+	
+	$scope.novo = $state.params.novo;
+	
+	if(typeof $state.params.novo === 'undefined'){
+			$state.go('eventos');
+	}
+		
+	if($state.params.novo){
+		$scope.evento1 = {};
+		$scope.operacao = 'Novo';		
+	}else{	
+		$scope.operacao = 'Editar';	
+		$scope.evento1 = $state.params.evento;
+	}	
+	
+	function saveEvento() {
+		$scope.evento1.id_borra_criador = $rootScope.user.id;	
+		console.log('entrou')
+		var params = {  evento : $scope.evento1 };	
 		var deffered  = $q.defer();	
 		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {			
 			if (evento.error) {
@@ -39,21 +56,27 @@ angular.module('starter.evento', [])
 		return deffered.promise;
 	}	
 	
-	
-	$scope.novoEvento = function() {
+	$scope.novoEvento = function(form) {
 		var promises = [];	
-		promises.push(saveEvento($scope.evento));	
+		if($state.params.novo){
+			promises.push(saveEvento($scope.evento));
+		}else{
+			
+		}	1	
+		
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
-			if(retorno[0].type===1){
+			
+			
+			if(retorno.lenght==0){
 				//showErrorNotification(retorno[0].msg);
 			}else{			
-			$state.go('app.eventos');
+			$state.go('app.events');
 			console.log('Evento Criado com Sucesso')
 			//showNotification();				
 			}			
 		});
-	};
+	};	
 	
 	
 	$scope.cancelar = function() {

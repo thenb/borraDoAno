@@ -25,8 +25,6 @@ angular.module('starter.borra', [])
     ionicMaterialInk.displayEffect();
 	
 	$scope.borra1 = {};
-	console.log($scope.borra1);
-	console.log($state.params.novo);
 	$scope.novo = $state.params.novo;
 	if(typeof $state.params.novo === 'undefined'){
 			$state.go('borras');
@@ -54,25 +52,96 @@ angular.module('starter.borra', [])
 			}			
 		});
 		return deffered.promise;
-	}	
+	}
+
+	function editarNome() {			
+		var params = {  borra : $scope.borra1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarBorraNome').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+
+	function editatApelido() {			
+		var params = {  borra : $scope.borra1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarBorraApelido').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+
+	function editarEmail() {			
+		var params = {  borra : $scope.borra1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarBorraEmail').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+
+	function editarDataNascimento() {			
+		var params = {  borra : $scope.borra1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarBorraDataNascimento').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
 	
-	$scope.novoBorra = function() {
+	$scope.salvarBorra = function(form) {
 		var promises = [];	
-		promises.push(saveBorra());	
+		if($state.params.novo){
+			promises.push(saveBorra());	
+		}else{
+			if(form.nome.$dirty){
+				promises.push(editarNome());	
+			}
+			if(form.apelido.$dirty){
+				promises.push(editatApelido());	
+			}
+			if(form.email.$dirty){
+				promises.push(editarEmail());	
+			}
+			if(form.data_nascimento.$dirty){
+				promises.push(editarDataNascimento());	
+			}
+		}		
+		
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
 			if(retorno[0].type===1){
 				//showErrorNotification(retorno[0].msg);
 			}else{			
-			$state.go('app.borras');
-			console.log('Borra Criado com Sucesso')
+			$state.go('app.borras');					
 			//showNotification();				
 			}			
 		});
 	};
 	
 	$scope.cancelar = function() {
-		$state.go('app.borras');
+		$state.go('app.profile');
 	};	
 
 });
