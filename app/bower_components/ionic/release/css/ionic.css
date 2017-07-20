@@ -5815,13 +5815,13 @@ input, button, select, textarea {
   .item-floating-label .input-label {
     position: relative;
     padding: 5px 0 0 0;
-    opacity: 0;
+    opacity: 1;
     top: 10px;
     -webkit-transition: opacity 0.15s ease-in, top 0.2s linear;
     transition: opacity 0.15s ease-in, top 0.2s linear; }
 
 	.item-floating-label .input-label.has-input {
-      opacity: 0;
+      opacity: 1;
       top: 0;
       -webkit-transition: opacity 0.15s ease-in, top 0.2s linear;
       transition: opacity 0.15s ease-in, top 0.2s linear; }
