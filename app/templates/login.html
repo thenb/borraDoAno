@@ -15,15 +15,14 @@
 				<i class="icon ion-alert-circled"></i> {{msgError}}
 			</h5>
 			<ul class="list">
-
-			  <li class="item item-toggle"><h3 style="color: #fff;">Salvar senha?</h3>
-				 <label class="toggle toggle">
-				   <input type="checkbox">
-				   <div class="track">
-					 <div class="handle"></div>
-				   </div>
-				 </label>
-			  </li>
+			<li class="item item-toggle"><h3 style="color: #fff;">Salvar senha?</h3>
+			 <label class="toggle toggle">
+			   <input type="checkbox" ng-model="user.lembrar" name="lembrar">
+			   <div class="track">
+				 <div class="handle"></div>
+			   </div>
+			 </label>
+			</li>
 			</ul>
 			<div class="padding">
 				<button ng-click="doLogin()" class="button button-full button-assertive ink">Login</button>

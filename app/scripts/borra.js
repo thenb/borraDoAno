@@ -36,7 +36,11 @@ angular.module('starter.borra', [])
 	}else{	
 		$scope.operacao = 'Editar';	
 		$scope.borra1 = $state.params.borra;
-		$scope.borra1.data_nascimento = moment($scope.borra1.data_nascimento).toDate();		
+		console.log($scope.borra1);
+		if(typeof $scope.borra1.data_nascimento != 'undefined') {
+			$scope.borra1.data_nascimento = moment($scope.borra1.data_nascimento).toDate();
+		}
+		
 	}
 
 	

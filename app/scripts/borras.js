@@ -29,7 +29,15 @@ angular.module('starter.borras', [])
 	};
 	
 
-	function getAllBorras() {		
+	
+	$scope.verBorra = function (borra) {
+		console.log('ver borra');
+		$state.go('app.profile', { view: true, borra: borra });
+	};	
+	
+	
+
+	function getAllBorras() {
 		var deffered  = $q.defer();		
 		Restangular.one('/getAllBorras').getList().then(function(borras) {
 			$scope.borras = borras;

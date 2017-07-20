@@ -22,11 +22,21 @@ angular.module('starter.profile', [])
     ionicMaterialInk.displayEffect();	
 	
 	
-	$scope.user = $rootScope.user;
-	$scope.borra = $scope.user;
+	
+	if($state.params.view){
+		$scope.user = $state.params.borra;
+	
+	} else {
+		$scope.user = $rootScope.user;
+		$scope.borra = $scope.user;
+	}
+	
+	
+	
+
 	
 	$scope.editarBorra = function () {
-		$state.go('app.borra', {novo: false, borra: $scope.borra });
+		$state.go('app.borra', {novo: false, borra: $scope.user });
 	};
 	
 });

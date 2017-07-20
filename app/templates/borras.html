@@ -2,12 +2,14 @@
     <ion-content ng-class="{expanded:isExpanded}">
 		<ion-list class="disable-user-behavior animate-ripple">
 				<div class="list">
-					<ion-item nav-clear="" menu-close="" class="item-icon-right item-avatar" ng-repeat="borra in borras">
+					<div ng-click="verBorra(borra)" class="item item-avatar item-icon-right animate-ripple" ng-repeat="borra in borras">
 						<img src="img/crown.png">
 						<h2>{{borra.apelido}}</h2>
 						<p>{{borra.nome}}</p>
-					</ion-item>
+						<i class="icon ion-chevron-right" style="font-size: 10px;"></i>
+					</div>
 				</div>
 		</ion-list>
     </ion-content>
-</ion-view>	
+</ion-view>
+
