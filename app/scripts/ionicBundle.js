@@ -3,7 +3,7 @@
 
 angular.module('starter.ionic', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout, $state, $rootScope) {
 	// Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;
@@ -85,4 +85,15 @@ angular.module('starter.ionic', [])
             fabs[0].remove();
         }
     };
+	
+	
+	
+	$scope.doLogout = function() {
+		window.localStorage.setItem("token", {});
+		$rootScope.user = {};
+		$state.go('app.login');				
+	};	
+	
+
+	
 });

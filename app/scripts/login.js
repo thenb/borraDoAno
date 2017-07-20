@@ -12,6 +12,29 @@ angular.module('starter.login', [])
     ionicMaterialInk.displayEffect();
 	
 	$scope.user = {};
+
+	var lembrou = window.localStorage.getItem("lembrar");
+
+	
+	if(lembrou=='true'){
+		lembrou = true;
+	} else {
+		lembrou = false;
+	}
+	
+	if(lembrou){
+		if(typeof window.localStorage.getItem("apelido")!='undefined'){
+			$scope.user.apelido = window.localStorage.getItem("apelido")
+		}
+		if(typeof window.localStorage.getItem("senha")!='undefined'){
+			$scope.user.senha = window.localStorage.getItem("senha")
+		}
+		  $scope.user.lembrar = true;
+	} else {		
+		$scope.user.apelido = "";
+		$scope.user.senha = "";
+		$scope.user.lembrar = false;
+	}	
 	
 	function login() {			
 		var params = {  user : $scope.user };	
@@ -41,13 +64,26 @@ angular.module('starter.login', [])
 		promises.push(login());	
 		$q.all(promises).then(function(retorno) {
 			console.log(retorno);
-			if(retorno[0].type===1){
+			if(retorno[0].type === 1){
 				$scope.showError = true;
 				$scope.msgError = retorno[0].msg;
-			}else{
+			} else {
+				if(!$scope.user.lembrar){
+					window.localStorage.setItem("apelido", {});
+					window.localStorage.setItem("senha", {});
+					window.localStorage.setItem("lembrar", false);
+				} else {
+					window.localStorage.setItem("apelido", $scope.user.apelido);
+					window.localStorage.setItem("senha", $scope.user.senha);
+					window.localStorage.setItem("lembrar", $scope.user.lembrar);
+				}				
 			$state.go('app.dashboard');				
 			}			
 		});
 	};
+	
+	console.log('Token:'+ window.localStorage.getItem("token"));
+
+	
 	
 });
