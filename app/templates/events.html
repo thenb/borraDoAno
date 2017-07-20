@@ -1,30 +1,14 @@
 <ion-view view-title="Eventos">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-ripple">
-        <div class="item card-item">
-            <div ui-sref="app.event_details" class="card" style="background-color: #fafafa; margin: 0;"">
-                <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url('img/event.png');"></span>
-                    <strong>Nome do Evento</strong>
-                    <div class="card-footer text-right">BorraMaster
-                        <div class="pull-left">
-                            <i class="icon ion-clock"></i> Agora mesmo
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item card-item">
-            <div ui-sref="app.event_details" class="card" style="background-color: #fafafa; margin: 0;">
-                <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url('img/event.png');"></span>
-                    <strong>Nome do Evento 2</strong>
-                    <div class="card-footer text-right">BorraMaster
-                        <div class="pull-left">
-                            <i class="icon ion-clock"></i> Há 3 dias
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>		
+    <ion-content ng-class="{expanded:isExpanded}">
+		<ion-list class="disable-user-behavior animate-ripple">
+				<div class="list">
+					<ion-item nav-clear="" menu-close="" class="item-icon-right item-avatar" ng-repeat="evento in eventos">
+						<img src="img/crown.png">
+						<h2>Evento: {{evento.nome}}</h2>						
+						<p>In&#237cio: {{evento.data_inicio}}</p>
+						<p>Fim: {{evento.data_fim}}</p>
+					</ion-item>
+				</div>
+		</ion-list>
     </ion-content>
 </ion-view>
