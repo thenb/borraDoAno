@@ -32,7 +32,9 @@ angular.module('starter.profile', [])
 	}
 	
 	
-	
+	$scope.cancelar = function() {
+		$state.go('app.dashboard');
+	};	
 
 	
 	$scope.editarBorra = function () {

@@ -25,8 +25,8 @@ angular.module('starter.eventos', [])
 		var deffered  = $q.defer();		
 		Restangular.one('/getAllEventos').getList().then(function(eventos) {
 			eventos.map(function(item){
-				item.data_inicio = moment(item.data_inicio).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(item.data_inicio).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_fim = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
 			});			
 			
 			$scope.eventos = eventos;
@@ -35,18 +35,19 @@ angular.module('starter.eventos', [])
 		return deffered.promise;
 	}
 	
-	function init() {
+	function init2() {
         document.getElementsByTagName('ion-list')[0].className += ' animate-ripple';
         setTimeout(function() {
             ionicMaterialMotion.ripple();
         }, 200);
 	}
 	
+	
 	promises.push(getAllEventos());
 	
 	
 	$q.all(promises).then(function() {			
-			init();
+			init2();
 			//console.log($scope.borras.nome);
 		}	
 	);
