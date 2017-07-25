@@ -43,8 +43,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     		
 	
     .state('app.borras', {
-        cache: false,
-		url: '/borras',
+		cache: false,
+        url: '/borras',
         views: {
             'menuContent': {
                 templateUrl: 'templates/borras.html',
@@ -58,8 +58,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.borra', {
-        cache: false,
-		url: '/borra',
+		cache: false,
+        url: '/borra',
         views: {
             'menuContent': {
                 templateUrl: 'templates/borra.html',
@@ -75,12 +75,11 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
             }
         },
 		params: {novo: null, borra: null }	
-    })	
-	   
+    })	   
 	
 	.state('app.profile', {
-        cache: false,
-		url: '/profile',
+		cache: false,		
+        url: '/profile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/profile.html',
@@ -131,8 +130,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
    
    
     .state('app.event_details', {
-        cache: false,
-		url: '/event_details',
+		cache: false,
+        url: '/event_details',
         views: {
             'menuContent': {
                 templateUrl: 'templates/event_details.html',
@@ -150,8 +149,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     	
 	
     .state('app.justify', {
-        cache: false,
-		url: '/justify',
+		cache: false,		
+        url: '/justify',
         views: {
             'menuContent': {
                 templateUrl: 'templates/justify.html',
@@ -170,8 +169,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.login', {
-		cache: false,
-		url: '/login',
+		cache: false,		
+        url: '/login',
         views: {
             'menuContent': {
                 templateUrl: 'templates/login.html',
@@ -184,8 +183,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })   
 	
     .state('app.dashboard', {
-        cache: false,
-		url: '/dashboard',
+		cache: false,		
+        url: '/dashboard',
         views: {
             'menuContent': {
                 templateUrl: 'templates/dashboard.html',

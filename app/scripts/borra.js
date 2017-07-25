@@ -32,8 +32,8 @@ angular.module('starter.borra', [])
 		
 	if($state.params.novo){
 		$scope.borra1 = {};
-		$scope.operacao = 'Novo';		
-	}else{	
+		$scope.operacao = 'Novo';
+	}else{
 		$scope.operacao = 'Editar';	
 		$scope.borra1 = $state.params.borra;
 		console.log($scope.borra1);
@@ -139,7 +139,7 @@ angular.module('starter.borra', [])
 				//showErrorNotification(retorno[0].msg);
 			}else{			
 			$state.go('app.borras');					
-			//showNotification();				
+			//showNotification();
 			}			
 		});
 	};

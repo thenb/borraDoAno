@@ -94,6 +94,16 @@ angular.module('starter.ionic', [])
 		$state.go('app.login');				
 	};	
 	
+	$scope.verPerfil = function() {
+		if($state.params.view){
+			console.log('visualização');
+			$state.go('app.profile', { view: false });
+		} else {
+			console.log('nao visualização');
+			$state.go('app.profile', { view: false });
+		}			
+	};	
+	
 
 	
 });
