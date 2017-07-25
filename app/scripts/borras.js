@@ -59,10 +59,10 @@ angular.module('starter.borras', [])
 	promises.push(getAllBorras());
 	
 	
-	$q.all(promises).then(function() {			
+	$q.all(promises).then(function() {
 			init();
 			//console.log($scope.borras.nome);
-		}	
+		}
 	);
 	
 	

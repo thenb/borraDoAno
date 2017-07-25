@@ -21,19 +21,29 @@ angular.module('starter.profile', [])
     // Set Ink
     ionicMaterialInk.displayEffect();	
 	
+
+	//$scope.view = $state.params.view;
+
+	if(typeof $state.params.view === 'undefined'){
+			$state.go('borras');
+	}
+
+
 	
 	
 	if($state.params.view){
 		$scope.user = $state.params.borra;
+		$scope.operacao = 'Detalhes do Borra';
 	
 	} else {
 		$scope.user = $rootScope.user;
 		$scope.borra = $scope.user;
+		$scope.operacao = 'Meu Perfil';	
 	}
 	
 	
 	$scope.cancelar = function() {
-		$state.go('app.dashboard');
+		$state.go('app.borras');
 	};	
 
 	

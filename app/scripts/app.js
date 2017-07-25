@@ -43,6 +43,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     		
 	
     .state('app.borras', {
+		cache: false,
         url: '/borras',
         views: {
             'menuContent': {
@@ -57,6 +58,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.borra', {
+		cache: false,
         url: '/borra',
         views: {
             'menuContent': {
@@ -76,6 +78,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
 	.state('app.borra_details', {
+		cache: false,		
         url: '/borra_details',
         views: {
             'menuContent': {
@@ -96,6 +99,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })   
 	
 	.state('app.profile', {
+		cache: false,		
         url: '/profile',
         views: {
             'menuContent': {
@@ -125,6 +129,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })
 
     .state('app.event', {
+		cache: false,		
         url: '/event',
         views: {
             'menuContent': {
@@ -145,6 +150,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
    
    
     .state('app.event_details', {
+		cache: false,
         url: '/event_details',
         views: {
             'menuContent': {
@@ -163,6 +169,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     	
 	
     .state('app.justify', {
+		cache: false,		
         url: '/justify',
         views: {
             'menuContent': {
@@ -182,6 +189,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.login', {
+		cache: false,		
         url: '/login',
         views: {
             'menuContent': {
@@ -195,6 +203,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })   
 	
     .state('app.dashboard', {
+		cache: false,		
         url: '/dashboard',
         views: {
             'menuContent': {
