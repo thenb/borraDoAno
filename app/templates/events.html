@@ -1,15 +1,28 @@
 <ion-view view-title="Eventos">
-    <ion-content ng-class="{expanded:isExpanded}">
+    <ion-content ng-class="{expanded:isExpanded}">				
 		<ion-list class="disable-user-behavior animate-ripple">
 				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">
+						  Filtrar Por
+						</div>
+						<select ng-change="changeBuscaEventos(tipoBusca)" ng-model="tipoBusca">
+						  <option value="0" selected="selected"><p>Eventos Ativos</p></option>
+						  <option value="1"><p>Eventos Anteriores</p></option>
+						  <option value="2"><p>Meus eventos</p></option>
+						</select>
+					</label>					
 					<div ng-click="" class="item item-avatar item-icon-right animate-ripple" ng-repeat="evento in eventos">
 						<img src="img/crown.png">
 						<h2>Evento: {{evento.nome}}</h2>						
 						<p>In&#237cio: {{evento.data_inicio}}</p>
 						<p>Fim: {{evento.data_fim}}</p>
 						<i class="icon ion-chevron-right" style="font-size: 10px;"></i>
-					</div>
+					</div>											
 				</div>
+				<div class="text-center" ng-if="!eventos.length && tipoBusca==0">Nenhum evento ativo.</div>
+				<div class="text-center" ng-if="!eventos.length && tipoBusca==1">Nenhum evento anterior.</div>	
+				<div class="text-center" ng-if="!eventos.length && tipoBusca==2">Você não cadastrou nenhum evento.</div>
 		</ion-list>
     </ion-content>
 </ion-view>

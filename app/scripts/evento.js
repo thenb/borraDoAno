@@ -23,8 +23,8 @@ angular.module('starter.evento', [])
     ionicMaterialInk.displayEffect();
 	
 	$scope.evento1 = {};
-	
-	console.log($rootScope.user);
+	var promisesInit = [];		
+
 	
 	$scope.novo = $state.params.novo;
 	
@@ -42,7 +42,6 @@ angular.module('starter.evento', [])
 	
 	function saveEvento() {
 		$scope.evento1.id_borra_criador = $rootScope.user.id;	
-		console.log('entrou')
 		var params = {  evento : $scope.evento1 };	
 		var deffered  = $q.defer();	
 		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {			
@@ -56,31 +55,78 @@ angular.module('starter.evento', [])
 		return deffered.promise;
 	}	
 	
-	$scope.novoEvento = function(form) {
-		var promises = [];	
-		if($state.params.novo){
-			promises.push(saveEvento($scope.evento));
-		}else{
-			
-		}		
-		
-		$q.all(promises).then(function(retorno) {
-			console.log(retorno);
-			
-			
-			if(retorno.lenght==0){
-				//showErrorNotification(retorno[0].msg);
-			}else{			
-			$state.go('app.events');
-			console.log('Evento Criado com Sucesso')
-			//showNotification();				
+	function saveBorraEvento(borra,id_evento) {
+		var params = {  id_evento : id_evento, id_borra : borra.id   };	
+		var deffered  = $q.defer();	
+		Restangular.all('inserirBorraEvento').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				deffered.resolve(evento);
+				console.log(evento);
 			}			
 		});
-	};	
+		return deffered.promise;
+	}
 	
+	function getAllBorras() {
+		var deffered  = $q.defer();		
+		Restangular.one('/getAllBorras').getList().then(function(borras) {
+			$scope.borras = borras;
+			deffered.resolve(borras);
+		});
+		return deffered.promise;
+	}	
+	
+	$scope.novoEvento = function(form) {
+		var promises = [];	
+		if($state.params.novo){			
+			promises.push(saveEvento($scope.evento));		
+		}else{
+			//edicao dos campos			
+		}		
+		$q.all(promises).then(function(retorno) {
+			console.log(retorno[0].insertId);					
+			if($state.params.novo){	
+				var promisseEventosBorra = [];	
+				$scope.borras.map(function(borra){
+					promisseEventosBorra.push(saveBorraEvento(borra,retorno[0].insertId));			
+				});
+				
+				$q.all(promisseEventosBorra).then(function(retorno1) {
+					if(retorno1.lenght==0){
+						//showErrorNotification(retorno[0].msg);
+					}else{			
+						$state.go('app.events');
+						console.log('Evento Criado com Sucesso')
+						//showNotification();				
+					}			
+				});	
+			}else{
+				if(retorno.lenght==0){
+					//showErrorNotification(retorno[0].msg);
+				}else{			
+					$state.go('app.events');
+					console.log('Evento Criado com Sucesso')
+					//showNotification();				
+				}
+			}			
+		});
+	};		
 	
 	$scope.cancelar = function() {
 		$state.go('app.eventos');
 	};
-})
-;
+	
+	promisesInit.push(getAllBorras());
+	
+	$q.all(promisesInit).then(
+		function() {
+			console.log('Evento Ctrl');
+		}	
+	);
+	
+	
+	
+	
+});

@@ -43,7 +43,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     		
 	
     .state('app.borras', {
-        url: '/borras',
+        cache: false,
+		url: '/borras',
         views: {
             'menuContent': {
                 templateUrl: 'templates/borras.html',
@@ -57,7 +58,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.borra', {
-        url: '/borra',
+        cache: false,
+		url: '/borra',
         views: {
             'menuContent': {
                 templateUrl: 'templates/borra.html',
@@ -74,29 +76,11 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
         },
 		params: {novo: null, borra: null }	
     })	
-	
-	.state('app.borra_details', {
-        url: '/borra_details',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/borra_details.html',
-                controller: 'BorraDetailsCtrl'
-            },
-            'fabContent': {
-                template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-
-            }
-        },
-		params: {novo: null, borra: null }	
-    })   
+	   
 	
 	.state('app.profile', {
-        url: '/profile',
+        cache: false,
+		url: '/profile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/profile.html',
@@ -111,7 +95,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })
 
    .state('app.events', {
-        url: '/events',
+        cache: false,
+		url: '/events',
         views: {
             'menuContent': {
                 templateUrl: 'templates/events.html',
@@ -125,7 +110,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })
 
     .state('app.event', {
-        url: '/event',
+        cache: false,
+		url: '/event',
         views: {
             'menuContent': {
                 templateUrl: 'templates/event.html',
@@ -145,7 +131,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
    
    
     .state('app.event_details', {
-        url: '/event_details',
+        cache: false,
+		url: '/event_details',
         views: {
             'menuContent': {
                 templateUrl: 'templates/event_details.html',
@@ -163,7 +150,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     	
 	
     .state('app.justify', {
-        url: '/justify',
+        cache: false,
+		url: '/justify',
         views: {
             'menuContent': {
                 templateUrl: 'templates/justify.html',
@@ -182,7 +170,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })	
 	
     .state('app.login', {
-        url: '/login',
+		cache: false,
+		url: '/login',
         views: {
             'menuContent': {
                 templateUrl: 'templates/login.html',
@@ -195,7 +184,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })   
 	
     .state('app.dashboard', {
-        url: '/dashboard',
+        cache: false,
+		url: '/dashboard',
         views: {
             'menuContent': {
                 templateUrl: 'templates/dashboard.html',
