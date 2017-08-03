@@ -34,7 +34,7 @@ angular.module('starter.eventos', [])
 		Restangular.one('/getAllEventosAtivos').getList().then(function(eventos) {
 			eventos.map(function(item){
 				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
 			});			
 			console.log(eventos);
 			$scope.eventos = eventos;
@@ -49,7 +49,7 @@ angular.module('starter.eventos', [])
 		Restangular.one('/getAllEventosAnteriores').getList().then(function(eventos) {
 			eventos.map(function(item){
 				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
 			});			
 			
 			$scope.eventos = eventos;
@@ -65,7 +65,7 @@ angular.module('starter.eventos', [])
 		Restangular.all('getAllMyEventos').post(JSON.stringify(params)).then(function(eventos) {			
 			eventos.map(function(item){
 				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
 			});			
 			
 			$scope.eventos = eventos;
