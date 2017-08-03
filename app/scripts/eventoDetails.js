@@ -27,7 +27,14 @@ angular.module('starter.eventodetails', [])
     };
 	
     // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+    ionicMaterialInk.displayEffect();	
+	
+	
+	console.log($state.params.evento);
+	$scope.evento1 = $state.params.evento;
+	
+	
+	
 	
 	$scope.editarEvento = function () {
 		console.log('clicando');

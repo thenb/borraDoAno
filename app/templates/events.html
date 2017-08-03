@@ -12,7 +12,7 @@
 						  <option value="2"><p>Meus eventos</p></option>
 						</select>
 					</label>					
-					<div ng-click="" class="item item-avatar item-icon-right animate-ripple" ng-repeat="evento in eventos">
+					<div ng-click="verEvento(evento)" class="item item-avatar item-icon-right animate-ripple" ng-repeat="evento in eventos">
 						<img src="img/crown.png">
 						<h2>Evento: {{evento.nome}}</h2>						
 						<p>In&#237cio: {{evento.data_inicio}}</p>

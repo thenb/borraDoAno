@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 }
 
            },
-		   params: {evento: null }
+		   params: {view: null, evento: null}	
     })
 
     	

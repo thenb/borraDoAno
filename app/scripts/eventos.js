@@ -80,6 +80,11 @@ angular.module('starter.eventos', [])
 	}
 	
 	
+	$scope.verEvento = function (evento) {
+		console.log(evento);
+		$state.go('app.event_details', { view: true, evento: evento });
+	};	
+	
 	
 	$scope.changeBuscaEventos = function(tipoBusca) {
 		if(tipoBusca==0){

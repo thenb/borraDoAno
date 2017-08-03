@@ -4,20 +4,19 @@
 		<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;"">
 		   <div class="item item-avatar">
 			  <img src="img/event.png" style="box-shadow: 0 0 0 0; max-height: 50px; max-width: 50px;">
-			  <h2><strong>Nome do Evento</strong></h2>
+			  <h2><strong>{{evento1.nome}}</strong></h2>
 			  <div class="card-footer text-right">
 				 <div class="pull-left">
-					<i class="icon ion-clock"></i> Agora mesmo
+					<i class="icon ion-clock"></i> Data Início: {{evento1.data_inicio}}
+					<i class="icon ion-clock"></i> Data Fim: {{evento1.data_fim}}
 				 </div>
 			  </div>
 		   </div>
 		   
 		   <div class="item item-body" style="padding-top: 0; ">
-		   	<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>BorraMaster</strong></p>
+		   	<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>{{evento1.id_borra_criador}}</strong></p>
 			  <p style="margin-top: 0;">
-				 Descrição do Evento: This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-				 the content is from a card-body consisting of an image and paragraph text. The footer
-				 consists of tabs, icons aligned left, within the card-footer.
+				 {{evento1.descricao}}
 			  </p>
 				<p style="font-size: 15px;"><strong>Deseja participar do evento?</strong></p>
 		   </div>
