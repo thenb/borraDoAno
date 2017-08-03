@@ -33,6 +33,9 @@ angular.module('starter.eventodetails', [])
 	console.log($state.params.evento);
 	$scope.evento1 = $state.params.evento;
 	
+	$scope.cancelar = function() {
+		$state.go('app.events');
+	};
 	
 	
 	
