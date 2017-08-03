@@ -32,9 +32,9 @@ angular.module('starter.eventodetails', [])
 	console.log($state.params.evento);
 	$scope.evento1 = $state.params.evento;
 	$scope.borrou = false;
-	var promisseEvento = [];
+	var promisseEvento = [];	
 	
-	
+
 	function confirmarPresenca(presenca, id_tipo_borrada) {		
 		
 		var params = {  id_evento : $scope.evento1.id, id_borra : $rootScope.user.id, id_tipo_borrada : id_tipo_borrada, presenca : presenca};			
@@ -92,6 +92,10 @@ angular.module('starter.eventodetails', [])
 		$q.all(promises).then(function() {
 			console.log('salvou a confirmacao');
 		});		
+	};
+	
+	$scope.cancelar = function() {
+		$state.go('app.events');
 	};
 	
 	$scope.borrar = function () {

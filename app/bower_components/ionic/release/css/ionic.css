@@ -6463,7 +6463,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     white-space: nowrap;
     font-size: 14px;
     cursor: pointer;
-    direction: rtl; }
+    /*direction: rtl;*/ }
   .item-select select::-ms-expand {
     display: none; }
   .item-select option {
