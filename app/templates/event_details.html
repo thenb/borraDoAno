@@ -4,37 +4,40 @@
       <i class="icon ion-ios-arrow-back"></i> 
     </button>
 	</ion-nav-buttons>
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-ripple">
-	<div class="item card-item">
-		<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
-			<div class="item item-avatar item-icon-right animate-ripple">
-				<img src="img/crown.png" style="top: 25px">
-				<h2>Evento: {{evento1.nome}}</h2>						
-				<p>Data Início: {{evento1.data_inicio}}</p>
-				<p>Data Fim: {{evento1.data_fim}}</p>
-			</div>	
-			<div class="item item-body" style="padding-top: 0; ">
-				<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>{{evento1.id_borra_criador}}</strong></p>
-				<p style="margin-top: 0;">{{evento1.descricao}}</p>
-				
-			<h3 class="border-top"><strong>Participantes</strong></h3>
-			<div class="list">
-				<a class="item item-avatar">
-					<img src="img/sausage.png">
-					<h2>Material</h2>
-				</a>
-			</div>
-			<h3 class="border-top"><strong>Deseja participar do evento?</strong></h4>
-			</div>
-			<div class = "row" style="padding-bottom: 15px;">
-				<div class = "col-50">
-					<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+    <ion-content ng-class="{expanded:isExpanded}">
+		<div class="item card-item">
+			<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
+				<div class="item item-avatar item-icon-right">
+					<img src="img/crown.png" style="top: 25px">
+					<h2>Evento: {{evento1.nome}}</h2>						
+					<p>Data Início: {{evento1.data_inicio}}</p>
+					<p>Data Fim: {{evento1.data_fim}}</p>
+				</div>	
+				<div class="item item-body" style="padding-top: 0; ">
+					<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>{{evento1.id_borra_criador}}</strong></p>
+					<p style="margin-top: 0;">{{evento1.descricao}}</p>
+					
+				<h3 class="border-top" style="padding-top: 15px;"><strong>Participantes</strong></h3>
+				<div class="list ">
+					<a class="item item-avatar item-icon-right" ng-repeat="participante in participantes">
+						<img src="img/sausage.png">
+						<h2>{{participante.nome}}</h2>
+						<i class="icon ion-checkmark-circled" style="color: green;"  ng-if="participante.presenca == 1"></i>
+						<i class="icon ion-close-circled" style="color: red;" ng-if="participante.presenca == 0"></i>
+						<i class="icon ion-help" style="color: grey;" ng-if="participante.presenca == null"></i>
+					</a>
 				</div>
-				<div class = "col-50">
-					<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+				<h3 class="border-top" style="padding-top: 15px;"><strong>Deseja participar do evento?</strong></h4>
+				</div>
+				<div class = "row" style="padding-bottom: 15px;">
+					<div class = "col-50">
+						<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+					</div>
+					<div class = "col-50">
+						<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
     </ion-content>
 </ion-view>
