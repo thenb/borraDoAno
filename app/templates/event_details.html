@@ -1,7 +1,7 @@
 <ion-view view-title="Detahes do Evento">
     <ion-content ng-class="{expanded:isExpanded}" class="animate-ripple">
 	<div class="item card-item">
-		<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;"">
+		<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
 		   <div class="item item-avatar">
 			  <img src="img/event.png" style="box-shadow: 0 0 0 0; max-height: 50px; max-width: 50px;">
 			  <h2><strong>{{evento1.nome}}</strong></h2>
@@ -22,10 +22,10 @@
 		   </div>
 			<div class = "row" style="padding-bottom: 15px;">
 			  <div class = "col-50">
-				<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+				<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="confirmar()"></img>
 			  </div>
 			  <div class = "col-50">
-			  <img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+			  <img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ng-click="borrar()"></img>
 			  </div>
 		   </div>
 		</div>
