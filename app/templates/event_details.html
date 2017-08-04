@@ -5,39 +5,52 @@
     </button>
 	</ion-nav-buttons>
     <ion-content ng-class="{expanded:isExpanded}">
-		<div class="item card-item">
+		<div class="item card-item" style="margin-bottom: 80px;">
 			<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
-				<div class="item item-avatar item-icon-right">
-					<img src="img/crown.png" style="top: 25px">
+				<div class="item item-avatar item-icon-right" style="padding-right: 20px; padding-left: 70px;">
+					<img src="img/event.png" style="top: 25px">
 					<h2>Evento: {{evento1.nome}}</h2>						
 					<p>Data Início: {{evento1.data_inicio}}</p>
 					<p>Data Fim: {{evento1.data_fim}}</p>
 				</div>	
 				<div class="item item-body" style="padding-top: 0; ">
-					<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>{{evento1.id_borra_criador}}</strong></p>
+					<p style="font-size: 12px; margin-top: 0;">Criado por: <strong>{{evento1.nome_borra_criador}}</strong></p>
+				<h3 class="border-top" style="padding-top: 15px;"><strong>Descrição</strong></h3>
 					<p style="margin-top: 0;">{{evento1.descricao}}</p>
-					
-				<h3 class="border-top" style="padding-top: 15px;"><strong>Participantes</strong></h3>
-				<div class="list ">
-					<a class="item item-avatar item-icon-right" ng-repeat="participante in participantes">
-						<img src="img/sausage.png">
+				<h3 class="border-top" style="padding-top: 15px;"><strong>Quem vai</strong></h3>
+				<div class="list" >
+					<div class="item item-avatar item-icon-right" ng-repeat="participante in participantes" style="min-height: 60px; padding-top: 5px; padding-bottom: 5px;">
+						<img src="img/sausage.png" style="top: 10px;">
 						<h2>{{participante.nome}}</h2>
 						<i class="icon ion-checkmark-circled" style="color: green;"  ng-if="participante.presenca == 1"></i>
 						<i class="icon ion-close-circled" style="color: red;" ng-if="participante.presenca == 0"></i>
 						<i class="icon ion-help" style="color: grey;" ng-if="participante.presenca == null"></i>
-					</a>
+					</div>
 				</div>
-				<h3 class="border-top" style="padding-top: 15px;"><strong>Deseja participar do evento?</strong></h4>
+				<h3 class="border-top" style="padding-top: 15px;"><strong>Deseja participar do evento?</strong></h3>
 				</div>
 				<div class = "row" style="padding-bottom: 15px;">
 					<div class = "col-50">
-						<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+						<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="confirmar()"></button>
 					</div>
 					<div class = "col-50">
-						<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+						<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ng-click="borrar()"></button>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+        <script id="my-modal.html" type="text/ng-template">
+            <ion-modal-view>
+				<ion-header-bar style="background-color: #ef473a;">
+                    <h1 class="title">Justifique sua Borrada</h1>
+                </ion-header-bar>
+                <ion-content class="padding">
+                    <button class="button button-full" ng-repeat="borrada in borradas" ng-click="justificar(borrada.id)">{{borrada.nome}}</button>
+					<h3 class="border-top" style="padding-top: 15px;"></h3>
+                    <button class="button button-full button-block button-assertive" ng-click="cancelar()">Cancelar</button>
+                </ion-content>
+            </ion-modal-view>
+        </script>		
     </ion-content>
 </ion-view>

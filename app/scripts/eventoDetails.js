@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('starter.eventodetails', [])
-.controller('EventDetailsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading,  $q, Restangular, $state, $rootScope) {
+.controller('EventDetailsCtrl', function($scope, $stateParams, $ionicModal, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicLoading,  $q, Restangular, $state, $rootScope) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
@@ -91,22 +91,37 @@ angular.module('starter.eventodetails', [])
 
 		$q.all(promises).then(function() {
 			console.log('salvou a confirmacao');
+			$state.go('app.events');
 		});		
 	};
 	
 	$scope.cancelar = function() {
-		$state.go('app.events');
+		//$state.go('app.events');
+		$scope.modal.hide();
 	};
+	
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });	
+	
 	
 	$scope.borrar = function () {
-		$scope.borrou = true;		
-	};
+		$scope.borrou = true;
+        $scope.modal.show();
+    };
+
 	
 	$scope.justificar = function (id_tipo_borrada) {
+		console.log(id_tipo_borrada);
 		var promises = [];
-		promises.push(confirmarPresenca(true, id_tipo_borrada));
+		promises.push(confirmarPresenca(false, id_tipo_borrada));
 		$q.all(promises).then(function() {
 			console.log('salvou a borrada');
+			$scope.modal.hide();
+			$state.go('app.events');
 		});
 	};	
 	
