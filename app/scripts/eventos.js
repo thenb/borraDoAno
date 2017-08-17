@@ -17,10 +17,7 @@ angular.module('starter.eventos', [])
     ionicMaterialInk.displayEffect();
 	$scope.tipoBusca = '0';
 	
-	$scope.novoEvento = function () {
-		console.log('clicando');
-		$state.go('app.event', {novo: true, evento: null });
-	};	
+	
 
 	function efeito() {
         document.getElementsByTagName('ion-list')[0].className += ' animate-ripple';
@@ -78,6 +75,15 @@ angular.module('starter.eventos', [])
 	function getAllPontByIdEspec() {			
 		
 	}
+	
+	$scope.cancelar = function() {
+		$state.go('app.dashboard');
+	};	
+	
+	$scope.novoEvento = function () {
+		console.log('clicando');
+		$state.go('app.event', {novo: true, evento: null });
+	};	
 	
 	
 	$scope.verEvento = function (evento) {

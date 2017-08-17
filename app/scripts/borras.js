@@ -32,10 +32,12 @@ angular.module('starter.borras', [])
 	
 	$scope.verBorra = function (borra) {
 		console.log('ver borra');
-		$state.go('app.profile', { view: true, borra: borra });
+		$state.go('app.profile', { view: true, borra: borra, perfil:false });
 	};	
 	
-	
+	$scope.cancelar = function() {
+		$state.go('app.dashboard');
+	};	
 
 	function getAllBorras() {
 		var deffered  = $q.defer();		

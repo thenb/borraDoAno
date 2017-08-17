@@ -29,7 +29,6 @@ angular.module('starter.eventodetails', [])
     // Activate ink for controller
     ionicMaterialInk.displayEffect();	
 	
-	console.log($state.params.evento);
 	$scope.evento1 = $state.params.evento;
 	$scope.borrou = false;
 	var promisseEvento = [];	
@@ -97,8 +96,8 @@ angular.module('starter.eventodetails', [])
 	};
 	
 	$scope.cancelar = function() {
-		//$state.go('app.events');
-		$scope.modal.hide();
+		$state.go('app.events');
+		//$scope.modal.hide();
 	};
 	
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -128,7 +127,7 @@ angular.module('starter.eventodetails', [])
 	
 	$scope.editarEvento = function () {
 		console.log('clicando');
-		$state.go('app.event', {novo: false, evento: null });
+		$state.go('app.event', {novo: false, evento: $scope.evento1 });
 	};
 	
 	promisseEvento.push(getAllBorraEvento());

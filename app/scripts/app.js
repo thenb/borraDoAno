@@ -74,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 }
             }
         },
-		params: {novo: null, borra: null }	
+		params: {novo: null, perfil: null, borra: null }	
     })	   
 	
 	.state('app.profile', {
@@ -90,8 +90,8 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 controller: 'ProfileCtrl'
             }
         },
-		params: {view: null, borra: null}	
-    })
+		params: {perfil: null, novo: null, borra: null}	
+    })	
 
    .state('app.events', {
         cache: false,
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 }
 
            },
-		   params: {view: null, evento: null}	
+		   params: {evento: null}	
     })
 
     	
