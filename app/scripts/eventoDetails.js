@@ -42,22 +42,28 @@ angular.module('starter.eventodetails', [])
 		if(presenca){
 			//confirmou a presenca
 			Restangular.all('confirmarPresenca').post(JSON.stringify(params)).then(function(evento) {			
-			if (evento.error) {
-				 deffered.reject(evento.error);
-			}else{
-				deffered.resolve(evento);
-				console.log(evento);
-			}			
+				if (evento.error) {
+					 deffered.reject(evento.error);
+				}else{
+					var params = { id_evento : $scope.evento1.id};			
+					Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
+						$scope.participantes = participantes;
+						deffered.resolve(participantes);
+					});
+				}			
 			});		
 		}else{
 			//confirmou a borrada
 			Restangular.all('confirmarBorrada').post(JSON.stringify(params)).then(function(evento) {			
-			if (evento.error) {
-				 deffered.reject(evento.error);
-			}else{
-				deffered.resolve(evento);
-				console.log(evento);
-			}			
+				if (evento.error) {
+					 deffered.reject(evento.error);
+				}else{
+					var params = { id_evento : $scope.evento1.id};			
+						Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
+							$scope.participantes = participantes;
+							deffered.resolve(participantes);
+					});
+				}			
 			});				
 		}		
 		return deffered.promise;
@@ -90,14 +96,17 @@ angular.module('starter.eventodetails', [])
 		promises.push(confirmarPresenca(true, null));	
 
 		$q.all(promises).then(function() {
-			console.log('salvou a confirmacao');
-			$state.go('app.events');
+			console.log('salvou a confirmacao');			
 		});		
 	};
 	
 	$scope.cancelar = function() {
-		$state.go('app.events');
-		//$scope.modal.hide();
+		$state.go('app.events');		
+	};
+	
+	$scope.hideModal = function() {
+		$scope.modal.hide();
+		
 	};
 	
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -121,7 +130,7 @@ angular.module('starter.eventodetails', [])
 		$q.all(promises).then(function() {
 			console.log('salvou a borrada');
 			$scope.modal.hide();
-			$state.go('app.events');
+			$state.go('app.event_details');
 		});
 	};	
 	

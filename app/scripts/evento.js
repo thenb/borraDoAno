@@ -117,7 +117,7 @@ angular.module('starter.evento', [])
 			$state.go('app.event_details', {evento: $scope.evento1 });		
 		}
 		
-	};
+	};	
 	
 	promisesInit.push(getAllBorras());
 	
