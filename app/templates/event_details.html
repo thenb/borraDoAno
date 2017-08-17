@@ -7,8 +7,8 @@
     <ion-content ng-class="{expanded:isExpanded}">
 		<div class="item card-item">
 			<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
-				<div class="item item-avatar item-icon-right">
-					<img src="img/crown.png" style="top: 25px">
+				<div class="item item-avatar item-icon-right">					
+					<img src="img/crown.png">
 					<h2>Evento: {{evento1.nome}}</h2>						
 					<p>Data Início: {{evento1.data_inicio}}</p>
 					<p>Data Fim: {{evento1.data_fim}}</p>
@@ -31,10 +31,10 @@
 				</div>
 				<div class = "row" style="padding-bottom: 15px;">
 					<div class = "col-50">
-						<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="loading()"></button>
+						<img src="img/yes.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;" ng-click="confirmar()"></button>
 					</div>
 					<div class = "col-50">
-						<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ui-sref="app.justify"></button>
+						<img src="img/no.png" class="center button button-flat" style="padding: 0; height: 50px; width: 50px; border-radius: 50%;"  ng-click="borrar()"></button>
 					</div>
 				</div>
 			</div>

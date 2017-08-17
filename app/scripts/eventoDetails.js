@@ -86,6 +86,7 @@ angular.module('starter.eventodetails', [])
 	
 	
 	$scope.confirmar = function () {
+		console.log('confirmou');
 		var promises = [];
 		promises.push(confirmarPresenca(true, null));	
 
@@ -118,9 +119,11 @@ angular.module('starter.eventodetails', [])
 	promisseEvento.push(getAllBorraEvento());
 	promisseEvento.push(getAllTipoBorrada());
 	
+	
 	$q.all(promisseEvento).then(
 		function() {
 			console.log('Carregou tudo');
+			console.log($rootScope.user);
 			console.log($scope.participantes);
 			console.log($scope.borradas);
 		}	
