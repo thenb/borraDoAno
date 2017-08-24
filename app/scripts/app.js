@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ionic','starter.borras',
-'starter.dashboard','starter.evento','starter.eventodetails', 'starter.eventos','starter.justificar','starter.profile',
+'starter.dashboard','starter.evento','starter.eventodetails', 'starter.eventos','starter.profile',
 'ionic-material', 'ionMdInput', 'restangular'])
 
 .run(function($ionicPlatform, $rootScope) {
@@ -147,26 +147,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
     })
 
     	
-	
-    .state('app.justify', {
-		cache: false,		
-        url: '/justify',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/justify.html',
-                controller: 'JustifyCtrl'
-            },
-            'fabContent': {
-                template: '',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
 
-            }
-        }
-    })	
 	
     .state('app.login', {
 		cache: false,		
