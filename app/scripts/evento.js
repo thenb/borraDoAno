@@ -25,12 +25,8 @@ angular.module('starter.evento', [])
 	$scope.evento1 = {};
 	var promisesInit = [];		
 
-	
-	$scope.novo = $state.params.novo;
-	
-	if(typeof $state.params.novo === 'undefined'){
-			$state.go('eventos');
-	}
+	console.log($state.params.novo);
+	$scope.novo = $state.params.novo;	
 		
 	if($state.params.novo){
 		$scope.evento1 = {};
@@ -115,8 +111,13 @@ angular.module('starter.evento', [])
 	};		
 	
 	$scope.cancelar = function() {
-		$state.go('app.eventos');
-	};
+		if($state.params.novo){
+			$state.go('app.events');		
+		}else{
+			$state.go('app.event_details', {evento: $scope.evento1 });		
+		}
+		
+	};	
 	
 	promisesInit.push(getAllBorras());
 	

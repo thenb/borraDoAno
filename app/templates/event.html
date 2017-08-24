@@ -1,5 +1,10 @@
-<ion-view view-title="Novo Evento">
-    <ion-content ng-class="{expanded:$scope.isExpanded}">
+<ion-view view-title="{{operacao}} Evento">
+    <ion-nav-buttons side="left">
+    <button class="button back-button buttons button-clear header-item" ng-click="cancelar()">
+      <i class="icon ion-ios-arrow-back"></i> 
+    </button>
+	</ion-nav-buttons> 
+	<ion-content ng-class="{expanded:$scope.isExpanded}">
         <div class="hero slide-up" style="background-color: #0c63ee;">
             <div class="content">
                 <div class="avatar" style="background-image: url('img/event_add.png');"></div>
@@ -39,10 +44,7 @@
 					<br>
 					<button class="button button-block button-positive" ng-click="novoEvento(formEvento)">
 						Salvar
-					</button>
-					<button class="button button-block button-assertive" ng-click="cancelar()">
-						Cancelar
-					</button>				
+					</button>									
 				</div>
 			</form>
     </ion-content>

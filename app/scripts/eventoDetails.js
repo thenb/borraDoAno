@@ -29,7 +29,6 @@ angular.module('starter.eventodetails', [])
     // Activate ink for controller
     ionicMaterialInk.displayEffect();	
 	
-	console.log($state.params.evento);
 	$scope.evento1 = $state.params.evento;
 	$scope.borrou = false;
 	var promisseEvento = [];
@@ -45,22 +44,28 @@ angular.module('starter.eventodetails', [])
 		if(presenca){
 			//confirmou a presenca
 			Restangular.all('confirmarPresenca').post(JSON.stringify(params)).then(function(evento) {			
-			if (evento.error) {
-				 deffered.reject(evento.error);
-			}else{
-				deffered.resolve(evento);
-				console.log(evento);
-			}			
+				if (evento.error) {
+					 deffered.reject(evento.error);
+				}else{
+					var params = { id_evento : $scope.evento1.id};			
+					Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
+						$scope.participantes = participantes;
+						deffered.resolve(participantes);
+					});
+				}			
 			});		
 		}else{
 			//confirmou a borrada
 			Restangular.all('confirmarBorrada').post(JSON.stringify(params)).then(function(evento) {			
-			if (evento.error) {
-				 deffered.reject(evento.error);
-			}else{
-				deffered.resolve(evento);
-				console.log(evento);
-			}			
+				if (evento.error) {
+					 deffered.reject(evento.error);
+				}else{
+					var params = { id_evento : $scope.evento1.id};			
+						Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
+							$scope.participantes = participantes;
+							deffered.resolve(participantes);
+					});
+				}			
 			});				
 		}
 		
@@ -139,18 +144,22 @@ angular.module('starter.eventodetails', [])
 	
 	
 	$scope.confirmar = function () {
+		console.log('confirmou');
 		var promises = [];
 		promises.push(confirmarPresenca(true, null));	
 
 		$q.all(promises).then(function() {
-			console.log('salvou a confirmacao');
-			$state.go('app.events');
+			console.log('salvou a confirmacao');			
 		});		
 	};
 	
 	$scope.cancelar = function() {
-		//$state.go('app.events');
+		$state.go('app.events');		
+	};
+	
+	$scope.hideModal = function() {
 		$scope.modal.hide();
+		
 	};
 	
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -174,21 +183,23 @@ angular.module('starter.eventodetails', [])
 		$q.all(promises).then(function() {
 			console.log('salvou a borrada');
 			$scope.modal.hide();
-			$state.go('app.events');
+			$state.go('app.event_details');
 		});
 	};	
 	
 	$scope.editarEvento = function () {
 		console.log('clicando');
-		$state.go('app.event', {novo: false, evento: null });
+		$state.go('app.event', {novo: false, evento: $scope.evento1 });
 	};
 	
 	promisseEvento.push(getAllBorraEvento());
 	promisseEvento.push(getAllTipoBorrada());
 	
+	
 	$q.all(promisseEvento).then(
 		function() {
 			console.log('Carregou tudo');
+			console.log($rootScope.user);
 			console.log($scope.participantes);
 			console.log($scope.borradas);
 		}	

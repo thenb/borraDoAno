@@ -7,8 +7,8 @@
     <ion-content ng-class="{expanded:isExpanded}">
 		<div class="item card-item" style="margin-bottom: 80px;">
 			<div class="list card stable-bg" style="background-color: #fafafa; margin: 0;">
-				<div class="item item-avatar item-icon-right" style="padding-right: 20px; padding-left: 70px;">
-					<img src="img/event.png" style="top: 25px">
+				<div class="item item-avatar item-icon-right">					
+					<img src="img/crown.png">
 					<h2>Evento: {{evento1.nome}}</h2>						
 					<p>Data Início: {{evento1.data_inicio}}</p>
 					<p>Data Fim: {{evento1.data_fim}}</p>
@@ -48,7 +48,7 @@
                 <ion-content class="padding">
                     <button class="button button-full" ng-repeat="borrada in borradas" ng-click="justificar(borrada.id)">{{borrada.nome}}</button>
 					<h3 class="border-top" style="padding-top: 15px;"></h3>
-                    <button class="button button-full button-block button-assertive" ng-click="cancelar()">Cancelar</button>
+                    <button class="button button-full button-block button-assertive" ng-click="hideModal()">Cancelar</button>
                 </ion-content>
             </ion-modal-view>
         </script>		

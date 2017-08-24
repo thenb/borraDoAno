@@ -25,22 +25,21 @@ angular.module('starter.borra', [])
     ionicMaterialInk.displayEffect();
 	
 	$scope.borra1 = {};
-	$scope.novo = $state.params.novo;
-	if(typeof $state.params.novo === 'undefined'){
-			$state.go('borras');
-	}
+	$scope.novo = $state.params.novo;	
 		
 	if($state.params.novo){
 		$scope.borra1 = {};
 		$scope.operacao = 'Novo';
 	}else{
-		$scope.operacao = 'Editar';	
-		$scope.borra1 = $state.params.borra;
-		console.log($scope.borra1);
+		if($state.params.perfil){
+			$scope.operacao = 'Perfil';	
+		}else{
+			$scope.operacao = 'Editar';	
+		}
+		$scope.borra1 = $state.params.borra;		
 		if(typeof $scope.borra1.data_nascimento != 'undefined') {
 			$scope.borra1.data_nascimento = moment($scope.borra1.data_nascimento).toDate();
 		}
-		
 	}
 
 	
@@ -145,7 +144,12 @@ angular.module('starter.borra', [])
 	};
 	
 	$scope.cancelar = function() {
-		$state.go('app.profile');
+		if($state.params.perfil){
+			$state.go('app.profile', {novo: false, perfil: true, borra: $scope.borra1 });
+		}else{
+			$state.go('app.borras');
+		}
+		
 	};	
 
 });

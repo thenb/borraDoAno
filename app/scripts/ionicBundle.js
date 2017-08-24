@@ -95,13 +95,7 @@ angular.module('starter.ionic', [])
 	};	
 	
 	$scope.verPerfil = function() {
-		if($state.params.view){
-			console.log('visualização');
-			$state.go('app.profile', { view: false });
-		} else {
-			console.log('nao visualização');
-			$state.go('app.profile', { view: false });
-		}			
+		$state.go('app.profile', { perfil: true });				
 	};	
 	
 
