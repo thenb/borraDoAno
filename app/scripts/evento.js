@@ -30,11 +30,13 @@ angular.module('starter.evento', [])
 		
 	if($state.params.novo){
 		$scope.evento1 = {};
-		$scope.operacao = 'Novo';		
+		$scope.operacao = 'Novo';	
 	}else{	
-		$scope.operacao = 'Editar';	
+		$scope.operacao = 'Editar';
 		$scope.evento1 = $state.params.evento;
-		
+		$scope.evento1.data_fim = new Date($scope.evento1.data_fim);
+		$scope.evento1.data_inicio = new Date($scope.evento1.data_inicio);
+
 	}	
 	
 	function saveEvento() {
@@ -128,6 +130,10 @@ angular.module('starter.evento', [])
 		}	
 	);
 	
+	
+	$scope.ver_data = function() {
+		console.log($scope.evento1.data_inicio);
+	}
 	
 	
 	
