@@ -9,11 +9,11 @@ angular.module('starter.eventodetails', [])
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
-    $timeout(function() {
+    /*$timeout(function() {
         ionicMaterialMotion.ripple({
             startVelocity: 10000
         });
-    }, 100);
+    }, 100);*/
 	
     $scope.loading = function() {
         $ionicLoading.show({
@@ -32,8 +32,10 @@ angular.module('starter.eventodetails', [])
 	console.log($state.params.evento);
 	$scope.evento1 = $state.params.evento;
 	$scope.borrou = false;
-	var promisseEvento = [];	
+	var promisseEvento = [];
 	
+	//var hoje = moment(new Date()).format("DD/MM/YYYY");
+
 
 	function confirmarPresenca(presenca, id_tipo_borrada) {		
 		
@@ -60,9 +62,60 @@ angular.module('starter.eventodetails', [])
 				console.log(evento);
 			}			
 			});				
-		}		
+		}
+		
 		return deffered.promise;
 	}
+	
+	var hoje = moment();
+    var data_final = moment($scope.evento1.data_fim,"DD-MM-YYYY");
+    var data_inicial = moment($scope.evento1.data_inicio,"DD-MM-YYYY");
+	
+	console.log('hoje é '+hoje);
+	console.log('data final é '+data_final);
+	
+	
+	console.log($scope.evento1.id_borra_criador);
+	console.log($rootScope.user.id);
+	
+	//vencido?
+	if (data_final >= hoje) {
+		console.log('evento ativo');
+		$scope.vencido = false;
+	} else {
+		console.log('evento vencido');
+		$scope.vencido = true;
+	}
+	
+	//iniciado?
+	if (data_inicial >= hoje) {
+		console.log('evento nao começou ainda');
+		$scope.iniciado = false;
+	} else {
+		console.log('evento iniciado ou vencido');
+		$scope.iniciado = true;
+	}
+	
+	//finalizado?
+	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido) {
+		console.log('Evento criado pelo mesmo Borra e está vencido');
+		$scope.finalizado = true;
+	} else {
+		console.log('Evento criado por outro Borra ou ainda nao está vencido');
+		$scope.finalizado = false;
+	}
+		
+	//Posso editar?
+	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido == false && $scope.iniciado == false) {
+		console.log('Posso Editar');
+		$scope.editar_evento = true;
+	} else {
+		console.log('Não posso Editar');
+		$scope.editar_evento = false;
+	}
+	
+	
+	
 	
 	function getAllBorraEvento() {
 		var deffered  = $q.defer();	

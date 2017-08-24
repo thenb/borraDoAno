@@ -33,8 +33,8 @@ angular.module('starter.eventos', [])
 		var deffered  = $q.defer();		
 		Restangular.one('/getAllEventosAtivos').getList().then(function(eventos) {
 			eventos.map(function(item){
-				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY');
 			});			
 			console.log(eventos);
 			$scope.eventos = eventos;
@@ -48,8 +48,8 @@ angular.module('starter.eventos', [])
 		var deffered  = $q.defer();		
 		Restangular.one('/getAllEventosAnteriores').getList().then(function(eventos) {
 			eventos.map(function(item){
-				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY');
 			});			
 			
 			$scope.eventos = eventos;
@@ -64,8 +64,8 @@ angular.module('starter.eventos', [])
 		var params = {  id_borra_criador : $rootScope.user.id};		
 		Restangular.all('getAllMyEventos').post(JSON.stringify(params)).then(function(eventos) {			
 			eventos.map(function(item){
-				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY, hh:mm:ss');
-				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY, hh:mm:ss');
+				item.data_inicio = moment(new Date(item.data_inicio)).format('DD/MM/YYYY');
+				item.data_fim = moment(new Date(item.data_fim)).format('DD/MM/YYYY');
 			});			
 			
 			$scope.eventos = eventos;

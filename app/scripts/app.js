@@ -138,7 +138,7 @@ angular.module('starter', ['ionic', 'starter.login','starter.borra','starter.ion
                 controller: 'EventDetailsCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarEvento()"><i class="icon ion-edit"></i></button>',
+                template: '<button ng-show="editar_evento" id="fab-event" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="editarEvento()"><i class="icon ion-edit"></i></button>',
                 controller: 'EventDetailsCtrl'
                 }
 
