@@ -34,6 +34,7 @@ angular.module('starter.evento', [])
 	}else{	
 		$scope.operacao = 'Editar';	
 		$scope.evento1 = $state.params.evento;
+		
 	}	
 	
 	function saveEvento() {

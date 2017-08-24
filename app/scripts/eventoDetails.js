@@ -60,7 +60,7 @@ angular.module('starter.eventodetails', [])
 				if (evento.error) {
 					 deffered.reject(evento.error);
 				}else{
-					var params = { id_evento : $scope.evento1.id};			
+					var params = { id_evento : $scope.evento1.id, id_tipo_borrada : id_tipo_borrada };			
 						Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
 							$scope.participantes = participantes;
 							deffered.resolve(participantes);
@@ -76,14 +76,6 @@ angular.module('starter.eventodetails', [])
     var data_final = moment($scope.evento1.data_fim,"DD-MM-YYYY");
     var data_inicial = moment($scope.evento1.data_inicio,"DD-MM-YYYY");
 	
-	console.log('hoje é '+hoje);
-	console.log('data final é '+data_final);
-	
-	
-	console.log($scope.evento1.id_borra_criador);
-	console.log($rootScope.user.id);
-	
-	//vencido?
 	if (data_final >= hoje) {
 		console.log('evento ativo');
 		$scope.vencido = false;
