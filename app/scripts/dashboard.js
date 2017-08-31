@@ -3,7 +3,7 @@
 
 angular.module('starter.dashboard', [])
 
-.controller('DashboardCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $ionicSideMenuDelegate, $rootScope) {
+.controller('DashboardCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $ionicSideMenuDelegate, $rootScope, Restangular, $q, $state,) {
     
 	$ionicSideMenuDelegate.canDragContent(true);	
 	$scope.$parent.showHeader();
@@ -12,6 +12,9 @@ angular.module('starter.dashboard', [])
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
+	var promises = [];    
+	
+	
     // Set Motion
     $timeout(function() {
         ionicMaterialMotion.slideUp({
@@ -22,7 +25,44 @@ angular.module('starter.dashboard', [])
     // Set Ink
     ionicMaterialInk.displayEffect();
 	
-	var decoded = jwt_decode(localStorage.getItem("token"));	
+	
+	function getAllEventosAtivos() {
+	var deffered  = $q.defer();		
+	Restangular.one('/getAllEventosAtivos').getList().then(function(eventos) {
+		eventos.map(function(item){
+			item.data_inicio_string = moment(item.data_inicio).format('DD/MM/YYYY');
+			item.data_fim_string = moment(item.data_fim).format('DD/MM/YYYY');
+		});			
+		console.log(eventos);
+		$scope.eventos = eventos;
+		deffered.resolve(eventos);
+		//efeito();
+	});
+	return deffered.promise;
+	}
+	
+	
+	
+	
+	
+	promises.push(getAllEventosAtivos());
+	
+	
+	$q.all(promises).then(function() {			
+			//efeito();
+			//console.log($scope.borras.nome);
+		}	
+	);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var decoded = jwt_decode(localStorage.getItem("token"));
 	//root scope user para virar global
 	$rootScope.user = decoded.user;
 	$scope.user = decoded.user;
