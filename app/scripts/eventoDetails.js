@@ -112,8 +112,6 @@ angular.module('starter.eventodetails', [])
 	}
 	
 	
-	
-	
 	function getAllBorraEvento() {
 		var deffered  = $q.defer();	
 		console.log($scope.evento1.id);
@@ -149,24 +147,37 @@ angular.module('starter.eventodetails', [])
 		$state.go('app.events');		
 	};
 	
-	$scope.hideModal = function() {
-		$scope.modal.hide();
+	$scope.hideModalJustificar = function() {
+		$scope.modalJustificar.hide();
 		
 	};
 	
-    $ionicModal.fromTemplateUrl('my-modal.html', {
+	$scope.hideModalFinalizar = function() {
+		$scope.modalFinalizar.hide();
+		
+	};
+	
+    $ionicModal.fromTemplateUrl('justificar', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function(modal) {
-        $scope.modal = modal;
+        $scope.modalJustificar = modal;
     });	
 	
+	$ionicModal.fromTemplateUrl('finalizar', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalFinalizar = modal;
+    });		
 	
-	$scope.borrar = function () {
-		$scope.borrou = true;
-        $scope.modal.show();
+	$scope.justificar = function () {
+		$scope.modalJustificar.show();
     };
-
+	
+	$scope.finalizar = function () {
+		$scope.modalFinalizar.show();
+    };
 	
 	$scope.justificar = function (id_tipo_borrada) {
 		console.log(id_tipo_borrada);
