@@ -17,27 +17,27 @@
 				<div class="list">
 					<label class="item item-input item-floating-label">
 						<span class="input-label">Nome do Evento</span>
-						<input type="text" placeholder="Informe o Nome do Evento" ng-model="evento1.nome">
+						<input type="text" name="nome"  placeholder="Informe o Nome do Evento" ng-model="evento1.nome">
 					</label>
 					<label class="item item-input item-floating-label">
 						<span class="input-label">Descrição</span>
-						<input type="text" placeholder="Informe a Descrição do Evento" ng-model="evento1.descricao">
+						<input type="text" name="descricao"  placeholder="Informe a Descrição do Evento" ng-model="evento1.descricao">
 					</label>
 					<label class="item item-input item-floating-label">
 						<span class="input-label">Local</span>
-						<input type="text" placeholder="Informe o Local do Evento" ng-model="evento1.local">
+						<input type="text" name="local"  placeholder="Informe o Local do Evento" ng-model="evento1.local">
 					</label>
 					<div class = "row" style="padding-bottom: 15px;">
 						<div class = "col-50">
 							<label class="item item-input item-floating-label">
 								<span class="input-label">De:</span>
-								<input type="date" placeholder="Informe a Data de Início do Evento" ng-model="evento1.data_inicio" ng-change="ver_data()">
+								<input type="date" name="data_inicio"  placeholder="Informe a Data de Início do Evento" ng-model="evento1.data_inicio" ng-change="ver_data()">
 							</label>
 						</div>
 						<div class = "col-50">
 							<label class="item item-input item-floating-label">
 								<span class="input-label">Até:</span>
-								<input type="date" placeholder="Informe a Data de Encerramento do Evento" ng-model="evento1.data_fim">
+								<input type="date" name="data_fim" placeholder="Informe a Data de Encerramento do Evento" ng-model="evento1.data_fim">
 							</label>
 						</div>
 					</div>

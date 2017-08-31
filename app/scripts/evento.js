@@ -52,7 +52,16 @@ angular.module('starter.evento', [])
 			}			
 		});
 		return deffered.promise;
-	}	
+	}
+
+	function getAllBorras() {
+		var deffered  = $q.defer();		
+		Restangular.one('/getAllBorras').getList().then(function(borras) {
+			$scope.borras = borras;
+			deffered.resolve(borras);
+		});
+		return deffered.promise;
+	}
 	
 	function saveBorraEvento(borra,id_evento) {
 		var params = {  id_evento : id_evento, id_borra : borra.id   };	
@@ -68,20 +77,99 @@ angular.module('starter.evento', [])
 		return deffered.promise;
 	}
 	
-	function getAllBorras() {
-		var deffered  = $q.defer();		
-		Restangular.one('/getAllBorras').getList().then(function(borras) {
-			$scope.borras = borras;
-			deffered.resolve(borras);
+	function editarNome() {			
+		var params = {  evento : $scope.evento1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarEventoNome').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+	
+	function editarDescricao() {			
+		var params = {  evento : $scope.evento1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarEventoDescricao').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+	
+	function editarLocal() {			
+		var params = {  evento : $scope.evento1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarEventoLocal').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+	
+	function editarDataInicio() {			
+		var params = {  evento : $scope.evento1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarEventoDataInicio').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
+		});
+		return deffered.promise;
+	}
+	
+	function editarDataFim() {			
+		var params = {  evento : $scope.evento1 };	
+		var deffered  = $q.defer();	
+		Restangular.all('editarEventoDataFim').post(JSON.stringify(params)).then(function(borra) {			
+			if (borra.error) {
+				 deffered.reject(borra.error);
+			}else{
+				deffered.resolve(borra);
+				console.log(borra);
+			}			
 		});
 		return deffered.promise;
 	}	
+		
 	
 	$scope.novoEvento = function(form) {
 		var promises = [];	
 		if($state.params.novo){			
 			promises.push(saveEvento($scope.evento));		
 		}else{
+			if(form.nome.$dirty){
+				promises.push(editarNome());	
+			}
+			if(form.descricao.$dirty){
+				promises.push(editarDescricao());	
+			}
+			if(form.local.$dirty){
+				promises.push(editarLocal());	
+			}
+			if(form.data_inicio.$dirty){
+				promises.push(editarDataInicio());	
+			}
+			if(form.data_fim.$dirty){
+				promises.push(editarDataFim());	
+			}
+			
+			
 			//edicao dos campos			
 		}		
 		$q.all(promises).then(function(retorno) {
