@@ -138,7 +138,7 @@ angular.module('starter.eventodetails', [])
 	}	
 	
 	function pontuarBorra(borra) {		
-		var params = {  id_borra : borra.id, id_origem: $scope.evento1, id_tipo_pontuacao: 2,  id_tipo_borrada : borra.id_tipo_borrada};			
+		var params = {  id_borra : borra.id, id_origem: $scope.evento1.id, id_tipo_pontuacao: 2,  id_tipo_borrada : borra.id_tipo_borrada};			
 		var deffered  = $q.defer();
 		Restangular.all('salvarPontuacao').post(JSON.stringify(params)).then(function(evento) {			
 			if (evento.error) {
@@ -196,7 +196,8 @@ angular.module('starter.eventodetails', [])
 	$scope.hideModalFinalizar = function(participantes) {
 		var promisesFinalizar = [];
 		participantes.map(function(item){
-			if(typeof item.id_tipo_borrada == 'undefined'){
+			console.log(item);
+			if(item.id_tipo_borrada != null){
 				promisesFinalizar.push(pontuarBorra(item));
 			}				
 		});	
