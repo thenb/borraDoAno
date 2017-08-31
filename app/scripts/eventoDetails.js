@@ -73,8 +73,8 @@ angular.module('starter.eventodetails', [])
 	}
 	
 	var hoje = moment();
-    var data_final = moment($scope.evento1.data_fim,"DD-MM-YYYY");
-    var data_inicial = moment($scope.evento1.data_inicio,"DD-MM-YYYY");
+    var data_final = moment($scope.evento1.data_fim);
+    var data_inicial = moment($scope.evento1.data_inicio);
 	
 	if (data_final >= hoje) {
 		console.log('evento ativo');
