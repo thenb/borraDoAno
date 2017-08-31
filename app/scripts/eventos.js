@@ -4,7 +4,7 @@
 angular.module('starter.eventos', [])
 
 
-.controller('EventsCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk,Restangular, $q, $state, $rootScope) {
+.controller('EventsCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Restangular, $q, $state, $rootScope) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
