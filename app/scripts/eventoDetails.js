@@ -70,7 +70,26 @@ angular.module('starter.eventodetails', [])
 		}
 		
 		return deffered.promise;
+	}
+
+	function borrei(id_borra) {		
+		
+		var params = {  id_borra : id_borra, id_tipo_borrada : 1};			
+		var deffered  = $q.defer();
+		Restangular.all('confirmarBorrada').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				var params = { id_evento : $scope.evento1.id};			
+				Restangular.all('getAllBorrasEvento').post(JSON.stringify(params)).then(function(participantes) {		
+					$scope.participantes = participantes;
+					deffered.resolve(participantes);
+				});
+			}			
+		});		
+		return deffered.promise;
 	}	
+	
 	
 
 	var hoje = moment();
@@ -190,10 +209,9 @@ angular.module('starter.eventodetails', [])
 		});
 	};
 
-	$scope.finalizar = function (id_tipo_borrada) {
-		console.log(id_tipo_borrada);
+	$scope.borrar = function (id_borra) {
 		var promises = [];
-		promises.push(confirmarPresenca(false, id_tipo_borrada));
+		promises.push(borrei(id_borra));
 		$q.all(promises).then(function() {
 			$scope.modalFinalizar.hide();
 			$state.go('app.event_details');
