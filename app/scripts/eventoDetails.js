@@ -155,7 +155,7 @@ angular.module('starter.eventodetails', [])
 		
 	};
 	
-    $ionicModal.fromTemplateUrl('my-modal.html', {
+    $ionicModal.fromTemplateUrl('justificar', {
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function(modal) {
