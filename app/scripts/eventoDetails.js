@@ -172,11 +172,11 @@ angular.module('starter.eventodetails', [])
         $scope.modalFinalizar = modal;
     });		
 	
-	$scope.justificar = function () {
+	$scope.justificarModal = function () {
 		$scope.modalJustificar.show();
     };
 	
-	$scope.finalizar = function () {
+	$scope.finalizarModal = function () {
 		$scope.modalFinalizar.show();
     };
 	
