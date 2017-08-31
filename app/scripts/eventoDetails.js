@@ -185,8 +185,17 @@ angular.module('starter.eventodetails', [])
 		var promises = [];
 		promises.push(confirmarPresenca(false, id_tipo_borrada));
 		$q.all(promises).then(function() {
-			console.log('salvou a borrada');
-			$scope.modal.hide();
+			$scope.modalJustificar.hide();
+			$state.go('app.event_details');
+		});
+	};
+
+	$scope.finalizar = function (id_tipo_borrada) {
+		console.log(id_tipo_borrada);
+		var promises = [];
+		promises.push(confirmarPresenca(false, id_tipo_borrada));
+		$q.all(promises).then(function() {
+			$scope.modalFinalizar.hide();
 			$state.go('app.event_details');
 		});
 	};	
