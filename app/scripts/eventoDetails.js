@@ -72,9 +72,10 @@ angular.module('starter.eventodetails', [])
 		return deffered.promise;
 	}	
 	
-	var hoje = moment();;
-	var data_inicial = moment($scope.evento1.data_inicio);
-	var data_final = moment($scope.evento1.data_fim);
+
+	var hoje = moment();
+    var data_final = moment($scope.evento1.data_fim);
+    var data_inicial = moment($scope.evento1.data_inicio);
 	
 	if (data_final >= hoje) {
 		console.log('evento ativo');
