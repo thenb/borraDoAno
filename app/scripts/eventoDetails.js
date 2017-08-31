@@ -29,15 +29,63 @@ angular.module('starter.eventodetails', [])
     // Activate ink for controller
     ionicMaterialInk.displayEffect();	
 	
+	$ionicModal.fromTemplateUrl('justificar', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalJustificar = modal;
+    });	
+	
+	$ionicModal.fromTemplateUrl('finalizar', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modalFinalizar = modal;
+    });
+	
+	
 	$scope.evento1 = $state.params.evento;
-	$scope.borrou = false;
+	var hoje = moment();
+    var data_final = moment($scope.evento1.data_fim);
+    var data_inicial = moment($scope.evento1.data_inicio);
 	var promisseEvento = [];
 	
-	//var hoje = moment(new Date()).format("DD/MM/YYYY");
-
+	if (data_final >= hoje) {
+		console.log('evento ativo');
+		$scope.vencido = false;
+	} else {
+		console.log('evento vencido');
+		$scope.vencido = true;
+	}
+	
+	//iniciado?
+	if (data_inicial >= hoje) {
+		console.log('evento nao começou ainda');
+		$scope.iniciado = false;
+	} else {
+		console.log('evento iniciado ou vencido');
+		$scope.iniciado = true;
+	}
+	
+	//finalizado?
+	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido) {
+		console.log('Evento criado pelo mesmo Borra e está vencido');
+		$scope.finalizado = true;
+	} else {
+		console.log('Evento criado por outro Borra ou ainda nao está vencido');
+		$scope.finalizado = false;
+	}
+		
+	//Posso editar?
+	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido == false && $scope.iniciado == false) {
+		console.log('Posso Editar');
+		$scope.editar_evento = true;
+	} else {
+		console.log('Não posso Editar');
+		$scope.editar_evento = false;
+	}	
 
 	function confirmarPresenca(presenca, id_tipo_borrada) {		
-		
 		var params = {  id_evento : $scope.evento1.id, id_borra : $rootScope.user.id, id_tipo_borrada : id_tipo_borrada, presenca : presenca};			
 		var deffered  = $q.defer();	
 		
@@ -73,7 +121,6 @@ angular.module('starter.eventodetails', [])
 	}
 
 	function borrei(id_borra) {		
-		
 		var params = {  id_borra : id_borra, id_tipo_borrada : 1};			
 		var deffered  = $q.defer();
 		Restangular.all('confirmarBorrada').post(JSON.stringify(params)).then(function(evento) {			
@@ -90,46 +137,20 @@ angular.module('starter.eventodetails', [])
 		return deffered.promise;
 	}	
 	
+	function pontuarBorra(borra) {		
+		var params = {  id_borra : borra.id, id_origem: $scope.evento1, id_tipo_pontuacao: 2,  id_tipo_borrada : borra.id_tipo_borrada};			
+		var deffered  = $q.defer();
+		Restangular.all('salvarPontuacao').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				deffered.resolve(evento);
+			}			
+		});		
+		return deffered.promise;
+	}
 	
 
-	var hoje = moment();
-    var data_final = moment($scope.evento1.data_fim);
-    var data_inicial = moment($scope.evento1.data_inicio);
-	
-	if (data_final >= hoje) {
-		console.log('evento ativo');
-		$scope.vencido = false;
-	} else {
-		console.log('evento vencido');
-		$scope.vencido = true;
-	}
-	
-	//iniciado?
-	if (data_inicial >= hoje) {
-		console.log('evento nao começou ainda');
-		$scope.iniciado = false;
-	} else {
-		console.log('evento iniciado ou vencido');
-		$scope.iniciado = true;
-	}
-	
-	//finalizado?
-	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido) {
-		console.log('Evento criado pelo mesmo Borra e está vencido');
-		$scope.finalizado = true;
-	} else {
-		console.log('Evento criado por outro Borra ou ainda nao está vencido');
-		$scope.finalizado = false;
-	}
-		
-	//Posso editar?
-	if ($rootScope.user.id == $scope.evento1.id_borra_criador && $scope.vencido == false && $scope.iniciado == false) {
-		console.log('Posso Editar');
-		$scope.editar_evento = true;
-	} else {
-		console.log('Não posso Editar');
-		$scope.editar_evento = false;
-	}
 	
 	
 	function getAllBorraEvento() {
@@ -172,24 +193,20 @@ angular.module('starter.eventodetails', [])
 		
 	};
 	
-	$scope.hideModalFinalizar = function() {
-		$scope.modalFinalizar.hide();
+	$scope.hideModalFinalizar = function(participantes) {
+		var promisesFinalizar = [];
+		participantes.map(function(item){
+			if(typeof item.id_tipo_borrada == 'undefined'){
+				promisesFinalizar.push(pontuarBorra(item));
+			}				
+		});	
 		
-	};
-	
-    $ionicModal.fromTemplateUrl('justificar', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modalJustificar = modal;
-    });	
-	
-	$ionicModal.fromTemplateUrl('finalizar', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modalFinalizar = modal;
-    });		
+		$q.all(promisesFinalizar).then(function() {
+			$scope.modalFinalizar.hide();
+		});
+		
+		
+	};    		
 	
 	$scope.justificarModal = function () {
 		$scope.modalJustificar.show();
@@ -213,8 +230,7 @@ angular.module('starter.eventodetails', [])
 		var promises = [];
 		promises.push(borrei(id_borra));
 		$q.all(promises).then(function() {
-			$scope.modalFinalizar.hide();
-			$state.go('app.event_details');
+			console.log('salvou a denuncia');
 		});
 	};	
 	
