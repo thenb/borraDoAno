@@ -70,17 +70,15 @@
                     <h1 class="title">Finalizando o Evento</h1>
                 </ion-header-bar>
                 <ion-content class="padding">
-					<div class="item item-avatar item-icon-right" ng-repeat="participante in participantes" style="min-height: 60px; padding-top: 5px; padding-bottom: 5px;">
+					<div class="item item-avatar item-icon-right" ng-repeat="participante in participantes" style="min-height: 60px; padding-top: 5px; padding-bottom: 5px;" ng-if="participante.presenca==1">
 						<img src="img/sausage.png" style="top: 10px;">
 						<h2>{{participante.nome}}</h2>
-						<h4>{{participante.borrada}}</h4>
-						<i class="icon ion-checkmark-circled" style="color: green;"  ng-if="participante.presenca == 1"></i>
-						<i class="icon ion-close-circled" style="color: red;" ng-if="participante.presenca == 0"></i>
-						<i class="icon ion-help" style="color: grey;" ng-if="participante.presenca == null"></i>
-						<button class="button button-full button-block button-assertive" ng-click="borrar(participante.id)">Borrou</button>
+						<button class="button button-full button-block button-assertive" ng-click="naoBorrou(participante)" ng-if="participante.denuncia">Borrou</button>
+						<button class="button button-full button-block button-balanced " ng-click="borrou(participante)" ng-if="participante.denuncia == null || !participante.denuncia ">Não Borrou</button>
 					</div>
 					<h3 class="border-top" style="padding-top: 15px;"></h3>
-                    <button class="button button-full button-block button-assertive" ng-click="hideModalFinalizar(participantes)">Finalizar</button>
+                    <button class="button button-full button-block button-balanced" ng-click="hideModalFinalizar(participantes)">Finalizar</button>
+					 <button class="button button-full button-block button-assertive" ng-click="cancelarModalFinalizar()">Cancelar</button>
                 </ion-content>
             </ion-modal-view>
         </script>		

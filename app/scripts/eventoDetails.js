@@ -121,7 +121,7 @@ angular.module('starter.eventodetails', [])
 	}
 
 	function borrei(id_borra) {		
-		var params = {  id_borra : id_borra, id_tipo_borrada : 1};			
+		var params = {  id_borra : id_borra, id_tipo_borrada : 1, id_evento : $scope.evento1.id};			
 		var deffered  = $q.defer();
 		Restangular.all('confirmarBorrada').post(JSON.stringify(params)).then(function(evento) {			
 			if (evento.error) {
@@ -148,10 +148,7 @@ angular.module('starter.eventodetails', [])
 			}			
 		});		
 		return deffered.promise;
-	}
-	
-
-	
+	}	
 	
 	function getAllBorraEvento() {
 		var deffered  = $q.defer();	
@@ -191,23 +188,26 @@ angular.module('starter.eventodetails', [])
 	$scope.hideModalJustificar = function() {
 		$scope.modalJustificar.hide();
 		
-	};
+	};	
+	
 	
 	$scope.hideModalFinalizar = function(participantes) {
 		var promisesFinalizar = [];
 		participantes.map(function(item){
 			console.log(item);
-			if(item.id_tipo_borrada != null){
+			if(item.id_tipo_borrada != null  || item.presenca ==null || item.denuncia ){
 				promisesFinalizar.push(pontuarBorra(item));
 			}				
 		});	
 		
 		$q.all(promisesFinalizar).then(function() {
 			$scope.modalFinalizar.hide();
-		});
-		
-		
-	};    		
+		});		
+	};    
+
+	$scope.cancelarModalFinalizar = function() {
+		$scope.modalFinalizar.hide();
+	};
 	
 	$scope.justificarModal = function () {
 		$scope.modalJustificar.show();
@@ -227,12 +227,14 @@ angular.module('starter.eventodetails', [])
 		});
 	};
 
-	$scope.borrar = function (id_borra) {
-		var promises = [];
-		promises.push(borrei(id_borra));
-		$q.all(promises).then(function() {
-			console.log('salvou a denuncia');
-		});
+	$scope.borrou = function (participante) {
+		participante.denuncia = true
+		participante.id_tipo_borrada = 1;
+	};		
+
+	$scope.naoBorrou = function (participante) {
+		participante.denuncia = false
+		participante.id_tipo_borrada = null;
 	};	
 	
 	$scope.editarEvento = function () {
@@ -241,8 +243,7 @@ angular.module('starter.eventodetails', [])
 	};
 	
 	promisseEvento.push(getAllBorraEvento());
-	promisseEvento.push(getAllTipoBorrada());
-	
+	promisseEvento.push(getAllTipoBorrada());	
 	
 	$q.all(promisseEvento).then(
 		function() {
