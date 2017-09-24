@@ -64,6 +64,8 @@ angular.module('starter.evento', [])
 	}
 	
 	function saveBorraEvento(borra,id_evento) {
+		console.log(id_evento);
+		console.log(borra);
 		var params = {  id_evento : id_evento, id_borra : borra.id   };	
 		var deffered  = $q.defer();	
 		Restangular.all('inserirBorraEvento').post(JSON.stringify(params)).then(function(evento) {			

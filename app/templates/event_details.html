@@ -26,10 +26,11 @@
 							<i class="icon ion-checkmark-circled" style="color: green;"  ng-if="participante.presenca == 1"></i>
 							<i class="icon ion-close-circled" style="color: red;" ng-if="participante.presenca == 0"></i>
 							<i class="icon ion-help" style="color: grey;" ng-if="participante.presenca == null"></i>
+							<i class="icon ion-chatbubble-working" style="color: red;" ng-if="participante.presenca == 2"></i>							
 						</div>
 					</div>				
 				</div>
-				<div class="item" ng-if="vencido == true" style="padding-top: 10; ">
+				<div class="item" ng-if="vencido == true && !evento1.finalizado" style="padding-top: 10; ">
 					<h3><strong>Finalizar Evento?</strong></h3>
 					<div class = "row">					
 						<div class = "col-50">

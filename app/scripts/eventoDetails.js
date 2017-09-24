@@ -138,9 +138,43 @@ angular.module('starter.eventodetails', [])
 	}	
 	
 	function pontuarBorra(borra) {		
+		if(borra.id_tipo_borrada==null){
+			borra.id_tipo_borrada = 1;
+		}
+		
 		var params = {  id_borra : borra.id_borra, id_origem: $scope.evento1.id, id_tipo_pontuacao: 1,  id_tipo_borrada : borra.id_tipo_borrada};			
 		var deffered  = $q.defer();
+		
 		Restangular.all('salvarPontuacao').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				deffered.resolve(evento);
+			}			
+		});		
+		return deffered.promise;
+	}
+	
+	function denunciar(borra) {				
+		var params = {  id_borra : borra.id_borra, id_evento : $scope.evento1.id};			
+		var deffered  = $q.defer();
+		
+		Restangular.all('denunciar').post(JSON.stringify(params)).then(function(evento) {			
+			if (evento.error) {
+				 deffered.reject(evento.error);
+			}else{
+				deffered.resolve(evento);
+			}			
+		});		
+		return deffered.promise;
+	}
+
+	function finalizarEvento() {		
+		console.log('finalizar')
+		var params = {  id_evento : $scope.evento1.id};			
+		var deffered  = $q.defer();
+		
+		Restangular.all('finalizarEvento').post(JSON.stringify(params)).then(function(evento) {			
 			if (evento.error) {
 				 deffered.reject(evento.error);
 			}else{
@@ -194,14 +228,18 @@ angular.module('starter.eventodetails', [])
 	$scope.hideModalFinalizar = function(participantes) {
 		var promisesFinalizar = [];
 		participantes.map(function(item){
-			console.log(item);
-			if(item.id_tipo_borrada != null  || item.presenca ==null || item.denuncia ){
-				promisesFinalizar.push(pontuarBorra(item));
+			if(item.id_tipo_borrada != null  || item.presenca === null || item.denuncia ){
+				promisesFinalizar.push(pontuarBorra(item));		
+				if(item.denuncia){
+					promisesFinalizar.push(denunciar(item));	
+				}				
 			}				
 		});	
+		promisesFinalizar.push(finalizarEvento());
 		
 		$q.all(promisesFinalizar).then(function() {
 			$scope.modalFinalizar.hide();
+			$state.go('app.events');
 		});		
 	};    
 

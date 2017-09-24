@@ -27,24 +27,41 @@ angular.module('starter.dashboard', [])
 	
 	
 	function getAllEventosAtivos() {
-	var deffered  = $q.defer();		
-	Restangular.one('/getAllEventosAtivos').getList().then(function(eventos) {
-		eventos.map(function(item){
-			item.data_inicio_string = moment(item.data_inicio).format('DD/MM/YYYY');
-			item.data_fim_string = moment(item.data_fim).format('DD/MM/YYYY');
-		});			
-		console.log(eventos);
-		$scope.eventos = eventos;
-		deffered.resolve(eventos);
-		//efeito();
-	});
-	return deffered.promise;
+		var deffered  = $q.defer();		
+		Restangular.one('/getAllEventosAtivos').getList().then(function(eventos) {
+			eventos.map(function(item){
+				item.data_inicio_string = moment(item.data_inicio).format('DD/MM/YYYY');
+				item.data_fim_string = moment(item.data_fim).format('DD/MM/YYYY');
+			});			
+			console.log(eventos);
+			$scope.eventos = eventos;
+			deffered.resolve(eventos);
+			//efeito();
+		});
+		return deffered.promise;
 	}
+
+	function getAllborras() {
+		var deffered  = $q.defer();		
+		Restangular.one('/getAllborras').getList().then(function(borras) {				
+			console.log(borras);
+			$scope.borras = borras;
+			deffered.resolve(borras);
+			//efeito();
+		});
+		return deffered.promise;
+	}	
+	
+	$scope.verBorra = function (borra) {
+		$state.go('app.profile', { view: true, borra: borra, perfil:false });
+	};	
+	
+	$scope.verEvento = function (evento) {
+		$state.go('app.event_details', { view: true, evento: evento });
+	};	
 	
 	
-	
-	
-	
+	promises.push(getAllborras());
 	promises.push(getAllEventosAtivos());
 	
 	
@@ -52,14 +69,7 @@ angular.module('starter.dashboard', [])
 			//efeito();
 			//console.log($scope.borras.nome);
 		}	
-	);	
-	
-	
-	
-	
-	
-	
-	
+	);		
 	
 	
 	var decoded = jwt_decode(localStorage.getItem("token"));

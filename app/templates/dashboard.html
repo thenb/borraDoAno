@@ -10,32 +10,19 @@
 		<div class="im-wrapper">
 			<h4><i class="icon ion-trophy"></i> Ranking da Borração</h4>
 		</div>		
-        <div class="item card-item">
-            <div ui-sref="app.borra_details" class="card" style="background-color: #fafafa; margin: 0;">
+        <div class="item card-item" ng-repeat="borra in borras">
+            <div ng-click="verBorra(borra)" class="card" style="background-color: #fafafa; margin: 0;">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/crown.png');"></span>
-                    <strong>BorraMaster</strong>
-                    <div class="card-footer text-right"><i class="icon ion-trophy"></i> 123.445
+                    <strong>{{borra.apelido}}</strong>
+                    <div class="card-footer text-right"><i class="icon ion-trophy"></i> {{borra.pontos}}
                         <div class="pull-left">
-                            Francisco Silva
+                            {{borra.nome}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="item card-item">
-            <div ui-sref="app.borra_details" class="card" style="background-color: #fafafa; margin: 0;">
-                <div class="item item-avatar item-text-wrap">
-                    <span class="avatar" style="background-image: url('img/sausage.png');"></span>
-                    <strong>BorraLinguiça</strong>
-                    <div class="card-footer text-right"><i class="icon ion-trophy"></i> 12.445
-                        <div class="pull-left">
-                            Nome Completo
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>		
+        </div>        	
 		<div class="im-wrapper">
 			<h4 class="border-top"><i class="icon ion-calendar"></i> Próximos Eventos</h4>		
 		</div>
@@ -46,9 +33,10 @@
                     <strong>{{evento.nome}}</strong><br>
 						<i class="icon ion-clock"></i> Início: {{evento.data_inicio_string}}<br>
                         <i class="icon ion-clock"></i> Fim: {{evento.data_fim_string}}
-                    <div class="card-footer text-right">{{evento.nome_borra_criador}}</div>
+						<div class="card-footer text-left"><strong>Organizador:</strong> {{evento.nome_borra_criador}}</div>
                 </div>
             </div>
-        </div>		
+        </div>
+		<h4 class="text-center" ng-if="eventos.length==0">Nenhum evento próximo.</h4>
     </ion-content>
 </ion-view>
