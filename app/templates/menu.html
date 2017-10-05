@@ -28,10 +28,27 @@
                 <ion-item nav-clear menu-close ui-sref="app.events">
                     Eventos
                 </ion-item>
-                <ion-item nav-clear menu-close ng-click="doLogout()">
+                <ion-item nav-clear menu-close ng-click="modal.show()">
                     Logout
                 </ion-item>					
             </ion-list>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
+
+<script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+		  <strong class="title" style="font-size: 20px; color: #ffffff;">Logout</strong>
+          <button class="button button-clear button-primary" ng-click="modal.hide()"><i class="icon ion-close"></i></button>
+        </ion-header-bar>
+        <ion-content class="padding">
+        <div class="row">
+            <span  style="font-size: 20px; padding-bottom:20px;">Deseja mesmo fazer logout?</span><br>	              
+		</div>
+		<button class="button tema button-full button-positive" ng-click="logout()">Sim</button>
+		<button class="button tema button-full button-positive" ng-click="modal.hide()">Não</button>
+
+        </ion-content>
+      </ion-modal-view>
+</script>

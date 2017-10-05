@@ -86,12 +86,18 @@ angular.module('starter.ionic', [])
         }
     };
 	
+	$ionicModal.fromTemplateUrl('templates/modal.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
 	
-	
-	$scope.doLogout = function() {
+	$scope.logout = function() {
+		$rootScope.user = {};			
+		$scope.user = {};
 		window.localStorage.setItem("token", {});
-		$rootScope.user = {};
-		$state.go('app.login');				
+		$scope.modal.hide();
+		$state.go('app.login');
 	};	
 	
 	$scope.verPerfil = function() {
