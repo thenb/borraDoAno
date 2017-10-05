@@ -64,12 +64,47 @@ angular.module('starter.dashboard', [])
 	promises.push(getAllborras());
 	promises.push(getAllEventosAtivos());
 	
+
+	function checkNewDispositivo(token) {
+		console.log('chamou a rota?')
+		var deffered  = $q.defer();	
+		var params = {  id_borra : $scope.user.id , token : token  };		
+		Restangular.all('/checkNewDispositivo').post(JSON.stringify(params)).then(function(resp) {			
+			deffered.resolve(resp);
+		});
+		return deffered.promise;
+	}
+	
+	$scope.configFCM = function() {
+		if (typeof FCMPlugin != 'undefined') {				
+			FCMPlugin.getToken(function(token){
+				alert('Entrou:' + token);
+				var promisesToken = [];
+				promisesToken.push(checkNewDispositivo(token));
+				$q.all(promisesToken).then(function() {
+					alert('Promiss:' + token);
+				});
+						
+			});
+			FCMPlugin.onNotification(function(data){
+				console.log('entrou?')
+				if(data.wasTapped){
+				//Notification was received on device tray and tapped by the user.
+				$state.go('app.notificacoes');
+				}else{
+				//Notification was received in foreground. Maybe the user needs to be notified.
+				$state.go('app.notificacoes');
+				}
+			});
+		}	
+	};	
+
 	
 	$q.all(promises).then(function() {			
 			//efeito();
 			//console.log($scope.borras.nome);
 		}	
-	);		
+	);	
 	
 	
 	var decoded = jwt_decode(localStorage.getItem("token"));

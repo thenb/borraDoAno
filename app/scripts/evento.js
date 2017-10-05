@@ -39,19 +39,37 @@ angular.module('starter.evento', [])
 
 	}	
 	
+	//Enviar notificação qnd cria um evento
+	function pushSaveEvento() {
+		console.log('salvou novo evento?')
+		var deffered  = $q.defer();	
+		var params = {  nome_evento : 'Nome do Evento'  };
+		Restangular.all('/pushNovoEvento').post(JSON.stringify(params)).then(function(resp) {			
+			deffered.resolve(resp);
+		});
+		return deffered.promise;
+	}	
+	
+	
 	function saveEvento() {
 		$scope.evento1.id_borra_criador = $rootScope.user.id;	
 		var params = {  evento : $scope.evento1 };	
 		var deffered  = $q.defer();	
-		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {			
+		Restangular.all('saveEvento').post(JSON.stringify(params)).then(function(evento) {
 			if (evento.error) {
 				 deffered.reject(evento.error);
 			}else{
-				deffered.resolve(evento);
+				//deffered.resolve(evento);
 				console.log(evento);
-			}			
-		});
+				//promessa para o push
+				var promisesPushSaveEvento = [];
+				promisesPushSaveEvento.push(pushSaveEvento());
+				$q.all(promisesPushSaveEvento).then(function() {
+					console.log('Push na Rota');				
+				});
+			}
 		return deffered.promise;
+		});
 	}
 
 	function getAllBorras() {
@@ -151,7 +169,7 @@ angular.module('starter.evento', [])
 		
 	
 	$scope.novoEvento = function(form) {
-		var promises = [];	
+		var promises = [];
 		if($state.params.novo){			
 			promises.push(saveEvento($scope.evento));		
 		}else{
@@ -175,7 +193,7 @@ angular.module('starter.evento', [])
 			//edicao dos campos			
 		}		
 		$q.all(promises).then(function(retorno) {
-			console.log(retorno[0].insertId);					
+			//console.log(retorno[0].insertId);
 			if($state.params.novo){	
 				var promisseEventosBorra = [];	
 				$scope.borras.map(function(borra){
